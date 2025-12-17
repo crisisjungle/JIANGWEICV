@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="姜为的个人简历 - 产品经理、交互设计师">
+    <meta name="keywords" content="姜为, 简历, 产品经理, 交互设计, 用户体验, 太极拳">
+    <title>姜为的个人简历</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  </head>
+  <body>
+    <div class="page-loader" id="pageLoader">
+      <div class="loader-content">
+        <div class="loader">
+          <div class="loader-circle"></div>
+          <div class="loader-circle"></div>
+          <div class="loader-circle"></div>
+        </div>
+        <div class="loader-text">载入简历中...</div>
+      </div>
+    </div>
+    <div class="scroll-progress"></div>
+    <div class="container">
+      <header class="themed-header">
+        <div class="header-content">
+          <div class="header-left">
+            <h1 class="name">姜为</h1>
+            <div class="title-bar">
+              <span class="title">B端/C端产品经理</span>
+            </div>
+          </div>
+          <div class="header-center">
+            <div class="contact">
+              <p><i class="fas fa-phone"></i> 13268378843</p>
+              <p><i class="fas fa-envelope"></i> 1251532417@qq.com</p>
+              <p><i class="fas fa-map-marker-alt"></i> 成都</p>
+              <p><i class="fas fa-user-graduate"></i> 2025届应届生</p>
+              <p><i class="fas fa-globe"></i> <a href="https://crisisjungle.github.io/JIANGWEI-CV/" target="_blank">个人网站</a></p>
+            </div>
+          </div>
+          <div class="header-right">
+            <div class="avatar-container">
+              <img src="jiangwei.jpeg" alt="姜为的照片" class="avatar">
+              <div class="avatar-decoration"></div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <nav class="floating-nav">
+        <button class="nav-button" onclick="scrollToSection('education')"><i class="fas fa-graduation-cap"></i> 教育经历</button>
+        <button class="nav-button" onclick="scrollToSection('work')"><i class="fas fa-briefcase"></i> 工作经历</button>
+        <button class="nav-button" onclick="scrollToSection('projects')"><i class="fas fa-project-diagram"></i> 项目经历</button>
+        <button class="nav-button" onclick="scrollToSection('intern')"><i class="fas fa-user-clock"></i> 实习经历</button>
+        <button class="nav-button" onclick="scrollToSection('skills')"><i class="fas fa-tools"></i> 专业技能</button>
+        <button class="nav-button" onclick="scrollToSection('honors')"><i class="fas fa-trophy"></i> 荣誉奖项</button>
+        <button class="nav-button" onclick="scrollToSection('research')"><i class="fas fa-flask"></i> 研究经历</button>
+        <button class="nav-button" onclick="scrollToSection('activities')"><i class="fas fa-running"></i> 课外经历</button>
+      </nav>
+
+      <section id="education" class="section">
+        <h2 class="section-title">教育经历</h2>
+        <div class="experience">
+          <div class="experience-header">
+            <h3>香港科技大学（QS前100）</h3>
+            <span class="duration">2024年09月 - 2025年07月</span>
+          </div>
+          <div class="position">环境科学与管理 硕士 跨学科学院</div>
+          <ul class="experience-details">
+            <li>主要课程：环境影响评估，ESG管理与信息披露，大气科学与管理，环境政策与管理，环境科学与技术基础</li>
+            <li>GPA: 3.5/4.0</li>
+          </ul>
+        </div>
+        <div class="experience">
+          <div class="experience-header">
+            <h3>西安交通大学（985/211/双一流）</h3>
+            <span class="duration">2018年09月 - 2022年06月</span>
+          </div>
+          <div class="position">工业设计 本科 机械与工程学院</div>
+          <ul class="experience-details">
+            <li>主要课程：设计调查，工业设计心理学，人机界面设计，互联网产品创业项目，Web编程技术</li>
+            <li>GPA: 3.4/4.3</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="intern" class="section">
+        <h2 class="section-title">实习经历</h2>
+        <div class="experience">
+          <div class="experience-header">
+            <h3>理想汽车有限公司</h3>
+            <span class="duration">2021年06月 - 2021年09月</span>
+          </div>
+          <div class="position">无人驾驶交互设计实习生</div>
+          <div class="tags-container">
+            <span class="tag">自动驾驶</span>
+            <span class="tag">HMI</span>
+          </div>
+          <ul class="experience-details">
+            <li>研究设计与执行：针对L3级自动驾驶模式切换场景，定义7类高频触发情境（包含高速巡航/紧急避让等）。使用Au & Lofelt设计16组声振组合方案（4种频率×4种振幅），组织42名用户完成双盲测试。</li>
+            <li>核心发现与输出：验证触觉反馈响应速度较声音提示快0.8秒，确立200Hz振动+800ms持续时长为最优触感方案。提出分级预警机制：▸ 一级提醒（接管准备）：方向盘微振动（0.5N·m）▸ 二级警报（紧急接管）：复合反馈（振动+三音阶提示音），输出6项HMI设计规范建议。</li>
+          </ul>
+        </div>
+        <div class="experience">
+          <div class="experience-header">
+            <h3>北京洛可可科技有限公司</h3>
+            <span class="duration">2020年07月 - 2020年09月</span>
+          </div>
+          <div class="position">产品设计实习生</div>
+          <div class="tags-container">
+            <span class="tag">产品设计</span>
+            <span class="tag">品牌形象</span>
+          </div>
+          <ul class="experience-details">
+            <li>进行腾讯公益设计项目设计辅助工作，完成洛克平台腾讯公益项目运营发布。</li>
+            <li>参与公司设计组北京市海外文化交流中心品牌形象设计项目的商务洽谈合作提案工作。通过深入理解客户的理念文化，为其重新设计logo，先后提出10余版方案，并最后交付样机方案。</li>
+            <li>参与公司雷士台灯儿童护眼台灯与屏幕挂灯设计调研工作，并对台灯外观设计进行了草图提案。</li>
+          </ul>
+        </div>
+        <div class="experience">
+          <div class="experience-header">
+            <h3>西安市量子智能科技有限公司</h3>
+            <span class="duration">2021年11月 - 2022年05月</span>
+          </div>
+          <div class="position">产品经理</div>
+          <div class="tags-container">
+            <span class="tag">垃圾分类</span>
+            <span class="tag">机器人</span>
+          </div>
+          <ul class="experience-details">
+            <li>完成《西安市生活垃圾分类管理条例》政策解读，建立企业园区场景下的合规性评估模型（覆盖6类垃圾处理标准）。通过深度访谈、用户画像、问卷调查等需求分析方法得出湿垃圾收集这一垃圾分类过程中的核心痛点。</li>
+            <li>聚焦湿垃圾收集场景，提出湿垃圾收集机器人与后台控制系统的功能概念设计方案，定义路径规划、识别湿垃圾、主动放入内部空间、自主充电等功能，以及后台显示电量、位置、工作情况等参数并统计垃圾收集数据。</li>
+            <li>运用SolidWorks完成垃圾收集机器人全参数化建模，包含15个运动部件优化设计；基于Adobe XD构建智慧管理平台设计系统，实现设备状态监控（10+参数可视化）、路径规划优化及垃圾处理量预测。</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="work" class="section">
+        <h2 class="section-title">工作经历</h2>
+        <div class="experience">
+          <div class="experience-header">
+            <h3>深圳共济科技有限公司</h3>
+            <span class="duration">2025年07月 - 2025年11月</span>
+          </div>
+          <div class="position">产品经理</div>
+          <div class="tags-container">
+            <span class="tag">标准化</span>
+            <span class="tag">项目管理</span>
+            <span class="tag">版本管理</span>
+          </div>
+          <ul class="experience-details">
+            <li>战略级创新产品设计与项目需求设计：为解决现有产品易用性与稳定性不足的问题，重新定义产品功能与架构，提供标准化产品解决方案。深入调研生产、安装、运维、售后、研发五个业务环节，系统梳理产品现状问题，制定端到端标准化解决方案，目标提升生产效率50%+、压缩调试时间60%、降低维护成本40%。建立工程模版-调试自检-动环面客三平台软件架构，撰写《云基标准化GU系统需求规格说明书》，覆盖产品背景分析、五类用户深度分析、完整业务流程、功能架构设计。</li>
+            <li>除核心负责的云基产品线外，还负责公司单点登录系统、门禁系统、用户权限管理、模拟置数模块、监控管理等多个产品线的功能需求设计。完成中兴UAC单点登录、吉宝组织架构图管理、河北国网工作票、上证仿真平台等20+项细分需求的规格设计和技术方案评审。</li>
+            <li>云基产品线产品负责人 | 全流程项目管理：负责云基产品线的整体项目周期管理，把控多条并行项目的进度和节奏，包括掉电保护方案开发、采集器操作系统XOS新版本开发、人脸识别一体屏门禁软件开发、云基标准化软件版本开发、ECO节能模块开发、国际化版本开发等。制定每个项目的关键里程碑，协调研发、测试、工程等部门按时交付，及时识别进度风险并推动问题解决。</li>
+            <li>产品故障管理与版本发布 | 产品版本管理：处理13个不同项目、全国上百个站点的50余条各类故障问题，建立故障分类、优先级排序和根因分析的体系化流程，确保高优问题快速定位和解决。及时拉通开发资源，针对重点客户项目制定专项补丁包方案。管理GU软件的V300R004 C00、C30、C50、C60、C66等多个主线版本，与彩虹C3224、彩虹C02PRO等多个硬件平台的适配工作。统计和分析现场故障问题，规划主线版本迭代方向，将高优故障问题及时合入主线hotfix补丁包，提升产品的稳定性和可维护性，建立持续的问题反馈闭环。</li>
+          </ul>
+        </div>
+        <div class="experience">
+          <div class="experience-header">
+            <h3>深圳果力智能科技有限公司</h3>
+            <span class="duration">2023年02月 - 2024年02月</span>
+          </div>
+          <div class="position">产品经理</div>
+          <div class="tags-container">
+            <span class="tag">人工智能</span>
+            <span class="tag">教育产品</span>
+            <span class="tag">交互设计</span>
+          </div>
+          <ul class="experience-details">
+            <li>AI认知语言大模型智能数字人教学终端系统：主导完成中小学AI教育大屏交互产品全流程设计，定义核心功能模块与交互逻辑。基于竞品分析与人机工学研究，设计AI数字人教学原型系统，输出PRD文档并协同前端团队完成开发。集成讯飞星火API实现大屏语音交互功能，支持自然语言问答与教学场景适配。</li>
+            <li>公司核心产品“果小聪”机器人：对原有APP诊断分析，重构平板端操作系统交互架构，优化7项核心功能操作路径。基于平板APP操控机器人的交互模式，为自然语言处理教学新功能进行了原型设计，向研发人员输出功能清单与界面原型设计。</li>
+            <li>航天太空探索沙盘产品：进行航天沙盘产品各个模块的功能定义，包括机器人与各个模块的交互方式、机器人在沙盘上的走线设计与学生如何操纵机器人完成任务。设计模块化航天任务场景，完成4个功能模块的3D建模与机器人交互协议开发。</li>
+            <li>工作成果：推动AI教育产品商业化落地，显著提升公司营收。参与并主导AI认知语言大模型教学终端系统与“果小聪”机器人等核心产品的设计与优化，有效提升产品智能化水平和用户体验。相关产品进入全国20多个省份的数百所学校，并成功拓展至全球30多个国家和地区，助力公司成为国内外领先的人工智能教育解决方案提供商。</li>
+          </ul>
+        </div>
+        <div class="experience">
+          <div class="experience-header">
+            <h3>上海品蓝技术有限公司</h3>
+            <span class="duration">2022年07月 - 2023年01月</span>
+          </div>
+          <div class="position">ToB产品经理</div>
+          <div class="tags-container">
+            <span class="tag">中小企业服务平台</span>
+            <span class="tag">功能架构</span>
+          </div>
+          <ul class="experience-details">
+            <li>需求分析：完成30余家同业平台功能调研，梳理出三大业务层级（基础服务/增值服务/生态服务），通过企业访谈，确定优先级排序逻辑，绘制业务关联矩阵图。</li>
+            <li>解决方案：使用Axure搭建包含12个核心模块的网站原型，包括主功能页（供应商认证/订单管理/物流跟踪）与辅助模块（行业资讯/政策解读/在线客服）。设计三层级导航系统（全局导航/业务导航/快捷入口），制作交互说明文档（含23个主要操作流程示意图），输出高保真原型图（17个页面+12组交互动效）。</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="projects" class="section">
+        <h2 class="section-title">项目经历</h2>
+        <div class="experience">
+          <div class="experience-header">
+            <h3>一叶知科-香港科技大学植物数据库网站</h3>
+            <span class="duration">2025年01月 - 至今</span>
+          </div>
+          <div class="position">创始人</div>
+          <div class="tags-container">
+            <span class="tag">数据库设计</span>
+            <span class="tag">前端开发</span>
+            <span class="tag">项目管理</span>
+          </div>
+          <ul class="experience-details">
+            <li>需求洞察与项目管理：发起校园植物资源数字化提案，获可持续发展办公室等3个部门联合支持。带领10人跨学科团队完成187种校园植物数据采集（含GPS定位+生物特征记录）。</li>
+            <li>技术实现与成果：使用Cursor构建HTML前端框架，集成Leaflet地理信息系统。【网站链接：<a href="https://ust-leaf-github-io.vercel.app/" target="_blank">ust-leaf-github-io.vercel.app</a>】</li>
+            <li>设计「三维信息架构」：▸ 空间层：校园地图坐标索引 ▸ 知识层：与香港物种数据库对接植物物种百科 ▸ 互动层：用户植物摄影投稿系统。上线首月访问量突破300人次，促成校方建立植物养护数字档案。</li>
+          </ul>
+        </div>
+        <div class="experience">
+          <div class="experience-header">
+            <h3>艺太极-太极拳辅助教学系统</h3>
+            <span class="duration">2020年05月 - 2023年06月</span>
+          </div>
+          <div class="position">项目创始人</div>
+          <div class="tags-container">
+            <span class="tag">图像识别</span>
+            <span class="tag">AI应用</span>
+            <span class="tag">创新创业</span>
+          </div>
+          <ul class="experience-details">
+            <li>大学生创新创业训练计划项目：国家级优秀结项（最高等级）。项目从大学生学习太极拳的场景出发，前期通过竞品分析、问卷调查、深度访谈、用户画像及故事板寻找用户在学习太极拳过程中遇到的困难，探究用户对太极小屋目标功能的需求度。</li>
+            <li>定义产品为“针对青少年学习太极新体验的服务装置”，完成太极小屋产品建模与APP高保真原型设计，并制作产品宣传片与商业计划书。</li>
+            <li>2021年成功申报国家级大学生课外学术科技竞赛作品，采集24式太极拳近100份样本，请专业裁判打分并训练算法，完成基于图像识别与人体骨架提取的智能评分技术。</li>
+          </ul>
+        </div>
+        <div class="experience">
+          <div class="experience-header">
+            <h3>“记忆宫”小程序</h3>
+            <span class="duration">2020年05月 - 2020年08月</span>
+          </div>
+          <div class="position">交互设计师</div>
+          <div class="tags-container">
+            <span class="tag">微信小程序</span>
+            <span class="tag">UI设计</span>
+            <span class="tag">认知心理学</span>
+          </div>
+          <ul class="experience-details">
+            <li>需求洞察与方案设计：访谈127名大学生发现87%认为传统记忆法操作门槛过高。基于认知心理学将记忆宫殿法拆解为「空间编码-图像联想-路径固化」三阶模型，设计渐进式学习系统：1. 引导教学（7步动态交互教程）；2. 记忆库管理（支持思维导图/卡片/语音三种输入）；3. 宫殿可视化（搭建含12种场景模板的3D建模工具库）。</li>
+            <li>技术实现与成果：采用微信小程序云开发架构，实现多端数据同步，运用Three.js构建轻量化3D预览模块，开发「记忆链路回溯」功能（操作记录可视化）。上线三个月获1,000+用户，日均使用时长14分钟，用户调研显示记忆效率提升达41%（N=237）。</li>
+          </ul>
+        </div>
+        <div class="experience">
+          <div class="experience-header">
+            <h3>Paperime纸杯回收机</h3>
+            <span class="duration">2020年09月 - 2021年01月</span>
+          </div>
+          <div class="position">产品经理</div>
+          <div class="tags-container">
+            <span class="tag">生态设计</span>
+            <span class="tag">交互设计</span>
+          </div>
+          <ul class="experience-details">
+            <li>负责Paperime纸杯回收机从0到1产品设计，定位为“趣味化环保互动终端”。基于可回收纸材料产品，为快餐店门店设计纸杯回收机，主导纸杯收集→智能压缩→数据统计→用户激励闭环的核心功能架构。</li>
+            <li>基于符号学设计原理，将机械回收行为转化为情感化体验，设计“虚拟花园”交互系统：用户每投递1个纸杯随机生成专属花朵（12种花卉+4季变化），配合积分兑换机制解锁咖啡券等奖励，实现功能性与趣味性平衡。</li>
+            <li>项目成果：产品投放至3家连锁快餐门店试运营，单机日均回收纸杯152个（较传统回收点提升73%），用户主动参与率达78%，获得门店方续约意向。</li>
+          </ul>
+        </div>
+        <div class="experience">
+          <div class="experience-header">
+            <h3>千面竹留守儿童交互玩具设计</h3>
+            <span class="duration">2020年04月 - 2021年01月</span>
+          </div>
+          <div class="position">产品设计师</div>
+          <div class="tags-container">
+            <span class="tag">情感设计</span>
+            <span class="tag">交互设计</span>
+          </div>
+          <ul class="experience-details">
+            <li>在湖南郴州白泉小学支教期间，通过田野调查与全国数据，定位留守儿童核心痛点为“情感表达方式单一化”，建立亲子双方用户画像及沟通场景模型。</li>
+            <li>设计双端互动系统：儿童端开发可识别6种基础表情的智能竹编玩具，通过触觉反馈引导情绪表达；家长端构建具备AI表情分析功能的APP，日均触发亲子互动提醒23次，试点期间沟通频率提升58%。</li>
+          </ul>
+        </div>
+        <div class="experience">
+          <div class="experience-header">
+            <h3>“小丝”智能车载交互方案</h3>
+            <span class="duration">2021年03月 - 2021年07月</span>
+          </div>
+          <div class="position">用户研究员</div>
+          <div class="tags-container">
+            <span class="tag">人机交互</span>
+            <span class="tag">车载系统</span>
+          </div>
+          <ul class="experience-details">
+            <li>运用Kano模型总结三类路怒症用户需求，访谈30+驾驶者形成用户画像与体验地图；发放200+份问卷并用SPSS完成效度/信度/描述性/假设检验，提炼设计方向。</li>
+            <li>基于调研结论输出针对路怒场景的车辆设计指南，梳理用户场景流程，搭建车载HMI界面信息架构并完成高保真原型。</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="skills" class="section">
+        <h2 class="section-title">专业技能</h2>
+        
+        <div class="honors-grid">
+          <div class="honor-card">
+            <div class="honor-content">
+              <h3>影视动画</h3>
+              <p>PR、AE、C4D、Blender</p>
+            </div>
+          </div>
+          
+          <div class="honor-card">
+            <div class="honor-content">
+              <h3>图像处理</h3>
+              <p>AutoCAD、PS、AI</p>
+            </div>
+          </div>
+          
+          <div class="honor-card">
+            <div class="honor-content">
+              <h3>3D设计</h3>
+              <p>Solidworks、Keyshot</p>
+            </div>
+          </div>
+          
+          <div class="honor-card">
+            <div class="honor-content">
+              <h3>交互设计</h3>
+              <p>Axure、Figma</p>
+            </div>
+          </div>
+          
+          <div class="honor-card">
+            <div class="honor-content">
+              <h3>编程语言</h3>
+              <p>HTML、C++、Java、Python</p>
+            </div>
+          </div>
+
+          <div class="honor-card">
+            <div class="honor-content">
+              <h3>数据处理</h3>
+              <p>SPSS、Tableau</p>
+            </div>
+          </div>
+
+          <div class="honor-card">
+            <div class="honor-content">
+              <h3>生命周期分析</h3>
+              <p>OpenLCA</p>
+            </div>
+          </div>
+
+          <div class="honor-card">
+            <div class="honor-content">
+              <h3>语言</h3>
+              <p>TOEFL 90分</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="honors" class="section">
+        <h2 class="section-title">荣誉奖项</h2>
+        
+        <div class="honors-grid">
+          <div class="honor-card">
+            <div class="honor-content">
+              <h3>国家级大学生创新创业训练计划项目</h3>
+              <p>教育部优秀结项（最高等级）</p>
+              <span class="honor-date">2023年07月</span>
+            </div>
+          </div>
+
+          <div class="honor-card">
+            <div class="honor-content">
+              <h3>2021年全国大学生武术锦标赛</h3>
+              <p>男子吴氏太极拳 冠军</p>
+              <span class="honor-date">2021年07月</span>
+            </div>
+          </div>
+          
+          <div class="honor-card">
+            <div class="honor-content">
+              <h3>第三十二届"腾飞杯"创新创业大赛</h3>
+              <p>创新赛道一等奖、创业赛道铜奖</p>
+              <span class="honor-date">2021年03月</span>
+            </div>
+          </div>
+        </div>
+
+        <button class="expand-button" onclick="toggleContent('more-honors')">
+          查看更多奖项
+          <span class="expand-icon">▼</span>
+        </button>
+
+        <div id="more-honors" class="detail-content hidden">
+          <div class="honors-grid">
+            <div class="honor-card">
+              <div class="honor-content">
+                <h3>第五届"锐·动交大"体育人物评选活动</h3>
+                <p>最佳运动员与最具影响力奖</p>
+                <span class="honor-date">2022年5月</span>
+              </div>
+            </div>
+            
+            <div class="honor-card">
+              <div class="honor-content">
+                <h3>2020-2021学年"民族体育进书院"活动</h3>
+                <p>优秀学生讲师</p>
+                <span class="honor-date">2021年6月</span>
+              </div>
+            </div>
+            
+            <div class="honor-card">
+              <div class="honor-content">
+                <h3>2021年红点设计概念大奖</h3>
+                <p>初审入围</p>
+                <span class="honor-date">2021年4月</span>
+              </div>
+            </div>
+            
+            <div class="honor-card">
+              <div class="honor-content">
+                <h3>2020腾讯公益广告大赛</h3>
+                <p>优秀设计奖</p>
+                <span class="honor-date">2020年11月</span>
+              </div>
+            </div>
+            
+            <div class="honor-card">
+              <div class="honor-content">
+                <h3>2019年陕西省大学生武术锦标赛</h3>
+                <p>男子太极拳太极剑全能冠军</p>
+                <span class="honor-date">2019年11月</span>
+              </div>
+            </div>
+            <div class="honor-card">
+              <div class="honor-content">
+                <h3>2019年全国大学生武术锦标赛</h3>
+                <p>男子武氏太极拳 冠军</p>
+                <span class="honor-date">2019年07月</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="research" class="section">
+        <h2 class="section-title">研究经历</h2>
+        <div class="experience">
+          <div class="experience-header">
+            <h3>深圳居民家庭食物垃圾浪费行为研究</h3>
+            <span class="duration">2024年09月 - 2025年05月</span>
+          </div>
+          <div class="position">研究生毕业论文</div>
+          <ul class="experience-details">
+            <li>基于计划行为理论及其文化扩展构建并比较6个结构方程模型，量化态度、主观规范与感知行为控制对浪费行为的作用路径。</li>
+            <li>通过问卷与SEM分析筛选最优模型，提出感知行为控制与文化身份导向的干预建议，为城市家庭食物浪费治理与政策制定提供数据支持。</li>
+          </ul>
+        </div>
+        <div class="experience">
+          <div class="experience-header">
+            <h3>复杂性视域下的生态设计</h3>
+            <span class="duration">2020年09月 - 2021年03月</span>
+          </div>
+          <div class="position">研究项目</div>
+          <ul class="experience-details">
+            <li>引入整体性、非线性、开放性等复杂性特征与生态哲学观点，重新梳理生态设计的关系范式。</li>
+            <li>从生态、经济、社会三目标构建系统框架，提出面向实践的生态设计策略建议，补充传统“人-物”视角。</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="activities" class="section">
+        <h2 class="section-title">课外经历</h2>
+        
+        <div class="experience">
+          <div class="experience-header">
+            <h3>校武术队队长</h3>
+            <span class="duration">2019年08月 - 2022年06月</span>
+          </div>
+          <div class="position">校武术队</div>
+          <ul class="experience-details">
+            <li>在校期间担任校武术队队长，代表学校参加省级、国家级武术比赛，多次蝉联太极拳冠军，累计获得16项个人荣誉，助力团队多次获冠。</li>
+            <li>在疫情期间带领武术队队员，共同开办了线上太极拳教学，在全校范围推广太极拳。</li>
+          </ul>
+        </div>
+        
+        <div class="experience">
+          <div class="experience-header">
+            <h3>湖南省郴州市白泉村白泉小学支教</h3>
+            <span class="duration">2020年04月 - 2020年05月</span>
+          </div>
+          <div class="position">四年级英语老师</div>
+          <ul class="experience-details">
+            <li>参与乡村支教项目，为当地小学生提供英语教育支持。</li>
+            <li>设计了一系列互动教学活动，提高学生学习兴趣和参与度。</li>
+          </ul>
+        </div>
+      </section>
+      
+      <footer class="footer">
+        <div class="copyright">
+          <p>&copy; 2025 姜为 | 个人简历</p>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      function scrollToSection(sectionId) {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          // 高亮当前选中的导航按钮
+          const navButtons = document.querySelectorAll('.nav-button');
+          navButtons.forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.getAttribute('onclick').includes(sectionId)) {
+              btn.classList.add('active');
+            }
+          });
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+
+      function toggleContent(contentId) {
+        const content = document.getElementById(contentId);
+        const button = content.previousElementSibling;
+        
+        if (content.classList.contains('hidden')) {
+          content.classList.remove('hidden');
+          if (contentId === 'more-work') {
+            button.innerHTML = '收起更多工作经历<span class="expand-icon">▲</span>';
+          } else if (contentId === 'more-projects') {
+            button.innerHTML = '收起更多项目经历<span class="expand-icon">▲</span>';
+          } else if (contentId === 'more-honors') {
+            button.innerHTML = '收起更多奖项<span class="expand-icon">▲</span>';
+          }
+        } else {
+          content.classList.add('hidden');
+          if (contentId === 'more-work') {
+            button.innerHTML = '查看更多工作经历<span class="expand-icon">▼</span>';
+          } else if (contentId === 'more-projects') {
+            button.innerHTML = '查看更多项目经历<span class="expand-icon">▼</span>';
+          } else if (contentId === 'more-honors') {
+            button.innerHTML = '查看更多奖项<span class="expand-icon">▼</span>';
+          }
+        }
+      }
+      
+      // 滚动进度条控制
+      window.addEventListener('scroll', function() {
+        const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = document.documentElement.scrollTop / windowHeight * 100;
+        document.querySelector('.scroll-progress').style.width = scrolled + '%';
+      });
+
+      // 添加按钮漂浮动画和初始激活状态
+      const navButtons = document.querySelectorAll('.nav-button');
+      navButtons.forEach((button, index) => {
+        button.style.animationDelay = `${index * 0.1}s`;
+      });
+      
+      // 添加滚动监听，自动高亮当前部分
+      window.addEventListener('scroll', function() {
+        const sections = document.querySelectorAll('section');
+        let currentSectionId = '';
+        
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.clientHeight;
+          if (window.pageYOffset >= (sectionTop - 300)) {
+            currentSectionId = section.id;
+          }
+        });
+        
+        if (currentSectionId) {
+          navButtons.forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.getAttribute('onclick').includes(currentSectionId)) {
+              btn.classList.add('active');
+            }
+          });
+        }
+      });
+      
+      // 页面加载时默认激活第一个按钮
+      window.onload = function() {
+        // 隐藏加载动画
+        setTimeout(function() {
+          const pageLoader = document.getElementById('pageLoader');
+          pageLoader.classList.add('hidden');
+        }, 1500);
+        
+        navButtons[0].classList.add('active');
+        
+        // 为技能条添加动画
+        const skillLevels = document.querySelectorAll('.skill-level');
+        skillLevels.forEach(skill => {
+          const width = skill.style.width;
+          skill.style.width = '0';
+          setTimeout(() => {
+            skill.style.width = width;
+          }, 300);
+        });
+      };
+      
+      // 回到顶部按钮
+      const backToTopButton = document.getElementById('backToTop');
+      
+      // 监听滚动事件，控制按钮显示和隐藏
+      window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 300) {
+          backToTopButton.classList.add('visible');
+        } else {
+          backToTopButton.classList.remove('visible');
+        }
+      });
+      
+      // 点击按钮回到顶部
+      backToTopButton.addEventListener('click', function() {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+    </script>
+    
+    <button id="backToTop" class="back-to-top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+  </body>
+</html> 
