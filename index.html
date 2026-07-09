@@ -1,629 +1,663 @@
 <!DOCTYPE html>
-<html lang="zh">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="姜为的个人简历 - 产品经理、交互设计师">
-    <meta name="keywords" content="姜为, 简历, 产品经理, 交互设计, 用户体验, 太极拳">
-    <title>姜为的个人简历</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  </head>
-  <body>
-    <div class="page-loader" id="pageLoader">
-      <div class="loader-content">
-        <div class="loader">
-          <div class="loader-circle"></div>
-          <div class="loader-circle"></div>
-          <div class="loader-circle"></div>
-        </div>
-        <div class="loader-text">载入简历中...</div>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>姜为 — AI产品经理</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<style>
+/* === RESET & BASE === */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#0a1628;
+  --navy-light:#111d33;
+  --navy-mid:#162440;
+  --green:#2d8a56;
+  --green-light:#3aaf6e;
+  --green-pale:#e8f5ee;
+  --cream:#f0ece4;
+  --cream-dark:#d4cfc6;
+  --white:#fafaf8;
+  --text-primary:#e8e6e1;
+  --text-secondary:#9da5b4;
+  --text-muted:#5e6a7a;
+  --gold:#c4a35a;
+  --font-serif:'Noto Serif SC',Georgia,'Times New Roman',serif;
+  --font-sans:'Noto Sans SC','PingFang SC','Hiragino Sans GB',sans-serif;
+}
+html{scroll-behavior:smooth;font-size:16px;overflow-x:hidden}
+body{font-family:var(--font-sans);background:var(--navy);color:var(--text-primary);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+
+/* === NAV === */
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1.25rem 3rem;display:flex;justify-content:space-between;align-items:center;transition:all .5s ease}
+.nav.scrolled{background:rgba(10,22,40,.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.06)}
+.nav-logo{font-family:var(--font-serif);font-size:1.1rem;font-weight:600;letter-spacing:.08em;color:var(--cream)}
+.nav-links{display:flex;gap:2rem;align-items:center}
+.nav-links a{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-secondary);transition:color .3s;font-weight:400}
+.nav-links a:hover{color:var(--cream)}
+.nav-menu-btn{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.nav-menu-btn span{width:22px;height:1.5px;background:var(--cream);transition:all .3s}
+
+/* === HERO === */
+.hero{position:relative;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:url('assets/book-cover.jpg') center 44%/cover no-repeat;filter:brightness(.28) saturate(.72)}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,22,40,.4) 0%,rgba(10,22,40,.7) 60%,var(--navy) 100%)}
+.hero-grain{position:absolute;inset:0;opacity:.04;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.hero-content{position:relative;z-index:2;text-align:center;padding:0 2rem}
+.hero-label{font-size:.7rem;letter-spacing:.35em;text-transform:uppercase;color:var(--green-light);margin-bottom:2rem;opacity:0;transform:translateY(20px)}
+.hero-name{font-family:var(--font-serif);font-size:clamp(3.5rem,8vw,7rem);font-weight:900;color:var(--cream);line-height:1.1;margin-bottom:1.5rem;opacity:0;transform:translateY(30px)}
+.hero-tagline{font-size:clamp(.9rem,1.5vw,1.1rem);color:var(--text-secondary);letter-spacing:.15em;font-weight:300;opacity:0;transform:translateY(20px)}
+.hero-tagline span{margin:0 .6rem;color:var(--text-muted)}
+.hero-scroll{position:absolute;bottom:3rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.8rem;opacity:0}
+.hero-scroll span{font-size:.65rem;letter-spacing:.2em;color:var(--text-muted);text-transform:uppercase}
+.hero-scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,var(--green-light),transparent);animation:scrollPulse 2s ease-in-out infinite}
+@keyframes scrollPulse{0%,100%{opacity:.3;transform:scaleY(.6)}50%{opacity:1;transform:scaleY(1)}}
+
+/* === SECTIONS === */
+.section{padding:8rem 3rem}
+.section-label{font-size:.65rem;letter-spacing:.35em;text-transform:uppercase;color:var(--green-light);margin-bottom:1rem}
+.section-title{font-family:var(--font-serif);font-size:clamp(2rem,4vw,3.2rem);font-weight:700;color:var(--cream);line-height:1.3;margin-bottom:2rem}
+.section-divider{width:40px;height:1px;background:var(--green);margin-bottom:3rem}
+
+/* === ABOUT === */
+.about{max-width:900px;margin:0 auto}
+.about-intro{font-size:1.05rem;line-height:2;color:var(--text-secondary);margin-bottom:3rem;font-weight:300}
+.about-intro strong{color:var(--cream);font-weight:500}
+.about-quote{position:relative;padding:2.5rem 3rem;border-left:2px solid var(--green);background:rgba(45,138,86,.04);border-radius:0 8px 8px 0}
+.about-quote p{font-family:var(--font-serif);font-size:1.05rem;line-height:2;color:var(--cream-dark);font-style:italic}
+.about-quote cite{display:block;margin-top:1rem;font-size:.85rem;color:var(--text-muted);font-style:normal}
+
+/* === BOOK === */
+.book{background:var(--navy-light)}
+.book-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:380px 1fr;gap:5rem;align-items:start}
+.book-cover{position:relative;border-radius:4px;overflow:hidden;box-shadow:20px 20px 60px rgba(0,0,0,.5),-5px -5px 20px rgba(255,255,255,.02);transform:perspective(800px) rotateY(-3deg);transition:transform .6s ease}
+.book-cover:hover{transform:perspective(800px) rotateY(0deg)}
+.book-cover img{width:100%;display:block}
+.book-info h3{font-family:var(--font-serif);font-size:2rem;color:var(--cream);margin-bottom:.5rem;font-weight:700}
+.book-info .book-subtitle{font-size:1rem;color:var(--text-muted);margin-bottom:.3rem;font-style:italic}
+.book-info .book-publisher{font-size:.85rem;color:var(--gold);margin-bottom:2rem;letter-spacing:.05em}
+.book-desc{font-size:.95rem;line-height:1.9;color:var(--text-secondary);margin-bottom:2rem;font-weight:300}
+.book-tags{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:2rem}
+.book-tags span{padding:.4rem 1rem;border:1px solid rgba(45,138,86,.3);border-radius:20px;font-size:.78rem;color:var(--green-light);letter-spacing:.05em;background:rgba(45,138,86,.06)}
+.book-meta{font-size:.82rem;color:var(--text-muted);line-height:1.8}
+.book-meta a{color:var(--green-light);border-bottom:1px solid rgba(58,175,110,.3);transition:border-color .3s}
+.book-meta a:hover{border-color:var(--green-light)}
+
+/* === VIDEO === */
+.video-section{max-width:1200px;margin:0 auto}
+.video-channel-intro{font-size:1rem;line-height:1.9;color:var(--text-secondary);margin-bottom:3rem;max-width:700px;font-weight:300}
+.video-feature{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+.video-visuals{display:flex;flex-direction:column;gap:1.2rem}
+.video-img-wrap{position:relative;border-radius:6px;overflow:hidden;cursor:pointer;border:1px solid rgba(255,255,255,.06)}
+.video-img-wrap img{width:100%;display:block;transition:transform .5s ease}
+.video-img-wrap:hover img{transform:scale(1.03)}
+.video-visuals.lab-visuals{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;align-self:start}
+.video-visuals.lab-visuals .video-img-wrap{aspect-ratio:16/9;background:var(--navy)}
+.video-visuals.lab-visuals .video-img-wrap:first-child{grid-column:1/-1}
+.video-visuals.lab-visuals .video-img-wrap img{height:100%;object-fit:cover}
+.video-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem;padding:1.5rem 0;border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);margin-bottom:2rem}
+.video-stat{text-align:center}
+.video-stat .num{font-family:var(--font-serif);font-size:clamp(1.05rem,1.8vw,1.5rem);color:var(--cream);font-weight:700}
+.video-stat .label{font-size:.7rem;color:var(--text-muted);margin-top:.3rem;letter-spacing:.1em}
+.video-desc{font-size:.92rem;line-height:1.9;color:var(--text-secondary);margin-bottom:2rem;font-weight:300}
+.video-channel-tag{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1.2rem;background:rgba(45,138,86,.1);border:1px solid rgba(45,138,86,.25);border-radius:20px;font-size:.82rem;color:var(--green-light)}
+
+/* === DEV PROJECTS === */
+.dev{background:var(--navy-light)}
+.dev-inner{max-width:1200px;margin:0 auto}
+.project{margin-bottom:6rem;padding-bottom:6rem;border-bottom:1px solid rgba(255,255,255,.04)}
+.project:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+.project-header{display:flex;align-items:baseline;gap:1.5rem;margin-bottom:.5rem;flex-wrap:wrap}
+.project-name{font-family:var(--font-serif);font-size:1.8rem;color:var(--cream);font-weight:700}
+.project-url{font-size:.8rem;color:var(--green-light);letter-spacing:.02em;border-bottom:1px solid rgba(58,175,110,.3)}
+.project-tagline{font-size:.95rem;color:var(--text-muted);margin-bottom:2rem;font-style:italic}
+.project-body{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+.project-desc-text{font-size:.92rem;line-height:1.9;color:var(--text-secondary);margin-bottom:1.5rem;font-weight:300}
+.project-highlights{list-style:none;margin-bottom:1.5rem}
+.project-highlights li{position:relative;padding-left:1.2rem;font-size:.88rem;line-height:1.8;color:var(--text-secondary);font-weight:300}
+.project-highlights li::before{content:'';position:absolute;left:0;top:.65rem;width:5px;height:5px;border-radius:50%;background:var(--green)}
+.project-tech{display:flex;flex-wrap:wrap;gap:.5rem}
+.project-tech span{padding:.3rem .8rem;background:rgba(255,255,255,.04);border-radius:4px;font-size:.72rem;color:var(--text-muted);letter-spacing:.03em;font-family:monospace}
+.project-gallery{display:grid;gap:.8rem}
+.project-gallery.cols-3{grid-template-columns:1fr 1fr 1fr}
+.project-gallery.cols-2{grid-template-columns:1fr 1fr}
+.project-gallery.cols-5{grid-template-columns:1fr 1fr 1fr;grid-template-rows:auto auto}
+.project-gallery .gallery-img{position:relative;border-radius:4px;overflow:hidden;cursor:pointer;border:1px solid rgba(255,255,255,.06);aspect-ratio:16/10;background:var(--navy)}
+.project-gallery .gallery-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.project-gallery .gallery-img:hover img{transform:scale(1.05)}
+.project-gallery .gallery-img.span-2{grid-column:span 2}
+.project-gallery.kaleido-gallery,.project-gallery.synapse-gallery,.project-gallery.rcdf-gallery,.project-gallery.bluedot-gallery{grid-template-columns:repeat(6,minmax(0,1fr));grid-auto-rows:clamp(36px,3.35vw,46px);gap:.65rem}
+.project-gallery.kaleido-gallery .gallery-img,.project-gallery.synapse-gallery .gallery-img,.project-gallery.rcdf-gallery .gallery-img,.project-gallery.bluedot-gallery .gallery-img{aspect-ratio:auto;height:100%;min-height:0}
+.project-gallery.kaleido-gallery .gallery-img:nth-child(1),.project-gallery.synapse-gallery .gallery-img:nth-child(1),.project-gallery.rcdf-gallery .gallery-img:nth-child(1),.project-gallery.bluedot-gallery .gallery-img:nth-child(1){grid-column:1/5;grid-row:1/5}
+.project-gallery.kaleido-gallery .gallery-img:nth-child(2),.project-gallery.synapse-gallery .gallery-img:nth-child(2),.project-gallery.rcdf-gallery .gallery-img:nth-child(2),.project-gallery.bluedot-gallery .gallery-img:nth-child(2){grid-column:5/7;grid-row:1/3}
+.project-gallery.kaleido-gallery .gallery-img:nth-child(3),.project-gallery.synapse-gallery .gallery-img:nth-child(3),.project-gallery.rcdf-gallery .gallery-img:nth-child(3),.project-gallery.bluedot-gallery .gallery-img:nth-child(3){grid-column:5/7;grid-row:3/5}
+.project-gallery.kaleido-gallery .gallery-img:nth-child(4){grid-column:1/4;grid-row:5/7}
+.project-gallery.kaleido-gallery .gallery-img:nth-child(5){grid-column:4/7;grid-row:5/7}
+.project-gallery.synapse-gallery .gallery-img:nth-child(4),.project-gallery.rcdf-gallery .gallery-img:nth-child(4){grid-column:1/3;grid-row:5/7}
+.project-gallery.synapse-gallery .gallery-img:nth-child(5),.project-gallery.rcdf-gallery .gallery-img:nth-child(5){grid-column:3/5;grid-row:5/7}
+.project-gallery.synapse-gallery .gallery-img:nth-child(6),.project-gallery.rcdf-gallery .gallery-img:nth-child(6){grid-column:5/7;grid-row:5/7}
+.project-gallery.synapse-gallery .gallery-img:nth-child(7){grid-column:1/4;grid-row:7/9}
+.project-gallery.synapse-gallery .gallery-img:nth-child(8){grid-column:4/7;grid-row:7/9}
+.project-gallery .gallery-img.contain{background:#eef3f0}
+.project-gallery .gallery-img.contain img{object-fit:contain}
+
+/* === RESEARCH === */
+.research-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.research-card{background:var(--navy-light);border:1px solid rgba(255,255,255,.04);border-radius:8px;padding:2rem;transition:all .4s ease;position:relative;overflow:hidden}
+.research-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--green);transform:scaleX(0);transform-origin:left;transition:transform .4s ease}
+.research-card:hover{border-color:rgba(45,138,86,.2);transform:translateY(-4px)}
+.research-card:hover::before{transform:scaleX(1)}
+.research-card .card-period{font-size:.7rem;color:var(--green-light);letter-spacing:.1em;margin-bottom:.8rem}
+.research-card .card-title{font-family:var(--font-serif);font-size:1rem;color:var(--cream);font-weight:600;margin-bottom:.8rem;line-height:1.5}
+.research-card .card-desc{font-size:.82rem;line-height:1.7;color:var(--text-muted);font-weight:300}
+.research-card .card-tag{display:inline-block;margin-top:1rem;padding:.25rem .7rem;background:rgba(45,138,86,.08);border-radius:12px;font-size:.7rem;color:var(--green-light)}
+
+/* === EDUCATION === */
+.edu{background:var(--navy-light)}
+.edu-inner{max-width:1000px;margin:0 auto}
+.edu-timeline{display:flex;gap:3rem;margin-bottom:4rem;position:relative;align-items:stretch}
+.edu-timeline::before{content:'';position:absolute;top:50%;left:0;right:0;height:1px;background:rgba(255,255,255,.06)}
+.edu-card{flex:1;background:var(--navy);border:1px solid rgba(255,255,255,.06);border-radius:8px;padding:2rem;position:relative;z-index:1}
+.edu-card .edu-year{font-size:.75rem;color:var(--green-light);letter-spacing:.1em;margin-bottom:.5rem}
+.edu-card .edu-school{font-family:var(--font-serif);font-size:1.2rem;color:var(--cream);font-weight:600;margin-bottom:.3rem}
+.edu-card .edu-badge{display:inline-flex;gap:.4rem;margin-bottom:.8rem;flex-wrap:wrap}
+.edu-card .edu-badge span{font-size:.65rem;padding:.2rem .5rem;background:rgba(196,163,90,.1);border:1px solid rgba(196,163,90,.2);border-radius:3px;color:var(--gold)}
+.edu-card .edu-major{font-size:.88rem;color:var(--text-secondary);margin-bottom:.3rem}
+.edu-card .edu-detail{font-size:.78rem;color:var(--text-muted);line-height:1.6}
+.edu-arrow{display:flex;align-items:center;justify-content:center;position:relative;z-index:1;color:var(--green);font-size:1.5rem;flex-shrink:0}
+.skills-section{margin-top:2rem}
+.skills-section h4{font-family:var(--font-serif);font-size:1.1rem;color:var(--cream);margin-bottom:1.5rem;font-weight:600}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.2rem}
+.skill-group{padding:1.2rem;border:1px solid rgba(255,255,255,.04);border-radius:6px;background:rgba(255,255,255,.01)}
+.skill-group .skill-cat{font-size:.7rem;color:var(--green-light);letter-spacing:.1em;margin-bottom:.6rem;text-transform:uppercase}
+.skill-group .skill-items{font-size:.82rem;color:var(--text-secondary);line-height:1.6;font-weight:300}
+
+/* === FOOTER === */
+.footer{text-align:center;padding:5rem 3rem;border-top:1px solid rgba(255,255,255,.04)}
+.footer-title{font-family:var(--font-serif);font-size:1.8rem;color:var(--cream);margin-bottom:2rem;font-weight:600}
+.footer-contacts{display:flex;justify-content:center;gap:3rem;margin-bottom:2rem;flex-wrap:wrap}
+.footer-contact{font-size:.88rem;color:var(--text-secondary)}
+.footer-contact .fc-label{font-size:.65rem;color:var(--text-muted);letter-spacing:.15em;text-transform:uppercase;margin-bottom:.3rem}
+.footer-bottom{font-size:.72rem;color:var(--text-muted);margin-top:3rem;letter-spacing:.05em}
+
+/* === LIGHTBOX === */
+.lightbox{position:fixed;inset:0;z-index:9999;background:rgba(5,10,20,.95);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .4s ease;cursor:zoom-out;backdrop-filter:blur(10px)}
+.lightbox.active{opacity:1;pointer-events:all}
+.lightbox img{max-width:90vw;max-height:90vh;object-fit:contain;border-radius:4px;box-shadow:0 20px 80px rgba(0,0,0,.5)}
+.lightbox-close{position:absolute;top:2rem;right:2rem;width:40px;height:40px;border:1px solid rgba(255,255,255,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--cream);font-size:1.2rem;cursor:pointer;transition:all .3s}
+.lightbox-close:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.4)}
+
+/* === RESPONSIVE === */
+@media(max-width:1024px){
+  .book-inner{grid-template-columns:280px 1fr;gap:3rem}
+  .video-feature,.project-body{grid-template-columns:1fr}
+  .research-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:768px){
+  .section{padding:5rem 1.5rem}
+  .nav{padding:1rem 1.5rem}
+  .nav-links{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(10,22,40,.98);flex-direction:column;align-items:center;justify-content:center;gap:2rem;z-index:999}
+  .nav-links.open{display:flex}
+  .nav-menu-btn{display:flex;z-index:1000}
+  .book-inner{grid-template-columns:1fr;gap:2rem}
+  .book-cover{max-width:260px;margin:0 auto}
+  .video-feature{grid-template-columns:1fr}
+  .project-body{grid-template-columns:1fr}
+  .project-gallery.cols-3,.project-gallery.cols-5{grid-template-columns:1fr 1fr}
+  .project-gallery.kaleido-gallery,.project-gallery.synapse-gallery,.project-gallery.rcdf-gallery,.project-gallery.bluedot-gallery{grid-template-columns:1fr 1fr;grid-auto-rows:auto}
+  .project-gallery.kaleido-gallery .gallery-img,.project-gallery.synapse-gallery .gallery-img,.project-gallery.rcdf-gallery .gallery-img,.project-gallery.bluedot-gallery .gallery-img{grid-column:auto!important;grid-row:auto!important;aspect-ratio:16/9}
+  .project-gallery .gallery-img.span-2{grid-column:span 1}
+  .research-grid{grid-template-columns:1fr}
+  .edu-timeline{flex-direction:column;gap:1.5rem}
+  .edu-timeline::before{display:none}
+  .edu-arrow{transform:rotate(90deg)}
+  .footer-contacts{flex-direction:column;align-items:center;gap:1.5rem}
+}
+@media(max-width:480px){
+  .hero-name{font-size:3rem}
+  .video-stats{gap:1rem}
+  .skills-grid{grid-template-columns:1fr 1fr}
+}
+
+/* === ANIMATIONS === */
+.reveal{opacity:0;transform:translateY(40px);transition:all .8s cubic-bezier(.23,1,.32,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-logo">姜为</div>
+  <div class="nav-links" id="navLinks">
+    <a href="#about">关于</a>
+    <a href="#book">思想</a>
+    <a href="#dev">项目</a>
+    <a href="#research">研究</a>
+    <a href="#edu">背景</a>
+    <a href="#contact">联系</a>
+  </div>
+  <div class="nav-menu-btn" id="menuBtn" onclick="document.getElementById('navLinks').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-grain"></div>
+  <div class="hero-content">
+    <div class="hero-label">PORTFOLIO</div>
+    <h1 class="hero-name">姜为</h1>
+    <p class="hero-tagline">AI产品经理<span>/</span>独立开发者<span>/</span>社会-生态研究者</p>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="hero-scroll-line"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="about">
+    <div class="section-label reveal">关于我</div>
+    <h2 class="section-title reveal">以设计为刃，自然为道<br>用最前沿的技术探索人与自然</h2>
+    <div class="section-divider reveal"></div>
+    <p class="about-intro reveal">
+      <strong>西安交通大学</strong>工业设计本科，<strong>香港科技大学</strong>环境科学与管理硕士。跨越设计、环境科学与哲学三个领域，以独特的复合视角审视人与自然的关系。科班产品经理出身，AI 超级个体，独立开发者。我热衷于将最前沿的 AI 技术，迅速转化并融入自己感兴趣的领域。
+      <br><br>
+      我拥有完整的产品设计、研发、项目管理能力。但放在今天看来，最重要的还是我的老本行——设计。未来的产品形态如何，取决于我们如何设计。对于人与自然关系的探索，是我长期的追求。我曾投入生态哲学与环境社会学的研究，著有生态哲学论著《自然诸领域》。现在也在利用业余时间创作内容，希望持续探索并传递未来社会的生态伦理。
+    </p>
+    <div class="about-quote reveal">
+      <p>"自然诸领域是绝望的哲学：人是那样渺小，于自然而言毫无意义。但自然诸领域又是希望的哲学：人运用自己的力量，探索自然，书写着一卷卷属于我们与自然的诗篇。"</p>
+      <cite>——《自然诸领域》后记</cite>
+    </div>
+  </div>
+</section>
+
+<!-- BOOK -->
+<section class="section book" id="book">
+  <div class="book-inner">
+    <div class="book-cover reveal">
+      <img src="assets/book-cover.jpg" alt="《自然诸领域》封面" class="lightbox-trigger">
+    </div>
+    <div class="book-info">
+      <div class="section-label reveal">思想底座</div>
+      <h3 class="reveal">《自然诸领域》</h3>
+      <div class="book-subtitle reveal">Spheres of Nature</div>
+      <div class="book-publisher reveal">华人作家协会出版社</div>
+      <p class="book-desc reveal">
+        一部从生态哲学与复杂性科学视角出发，探讨人与自然关系、现代性危机和人类中心主义边界的思想著作。它不是把生态看作单一保护议题，而是把自然、技术、制度、情感和人类行动放进同一个复杂系统中理解。
+      </p>
+      <p class="book-desc reveal">
+        这段长期研究也形成了我做 AI 产品的底层判断：社会和生态问题很少是单因果、单角色、单指标的问题。真正有价值的产品，应当帮助用户看见关系网络、反馈环、干预变量和不确定性。
+      </p>
+      <div class="book-tags reveal">
+        <span>复杂性科学</span>
+        <span>生态哲学</span>
+        <span>人与自然</span>
+        <span>现代性反思</span>
+        <span>系统关系</span>
+      </div>
+      <div class="book-meta reveal">
+        序言作者：西安交通大学辅导员 南亚娟 老师<br>
+        豆瓣页面：<a href="https://book.douban.com/subject/37394496/" target="_blank" rel="noopener">book.douban.com/subject/37394496/</a>
       </div>
     </div>
-    <div class="scroll-progress"></div>
-    <div class="container">
-      <header class="themed-header">
-        <div class="header-content">
-          <div class="header-left">
-            <h1 class="name">姜为</h1>
-            <div class="title-bar">
-              <span class="title">B端/C端产品经理</span>
-            </div>
-          </div>
-          <div class="header-center">
-            <div class="contact">
-              <p><i class="fas fa-phone"></i> 13268378843</p>
-              <p><i class="fas fa-envelope"></i> 1251532417@qq.com</p>
-              <p><i class="fas fa-map-marker-alt"></i> 成都</p>
-              <p><i class="fas fa-user-graduate"></i> 2025届应届生</p>
-              <p><i class="fas fa-globe"></i> <a href="https://crisisjungle.github.io/JIANGWEICV/" target="_blank">https://crisisjungle.github.io/JIANGWEICV/</a></p>
-            </div>
-          </div>
-          <div class="header-right">
-            <div class="avatar-container">
-              <img src="jiangwei.jpeg" alt="姜为的照片" class="avatar">
-              <div class="avatar-decoration"></div>
-            </div>
-          </div>
-        </div>
-      </header>
+  </div>
+</section>
 
-      <nav class="floating-nav">
-        <button class="nav-button" onclick="scrollToSection('education')"><i class="fas fa-graduation-cap"></i> 教育经历</button>
-        <button class="nav-button" onclick="scrollToSection('work')"><i class="fas fa-briefcase"></i> 工作经历</button>
-        <button class="nav-button" onclick="scrollToSection('projects')"><i class="fas fa-project-diagram"></i> 项目经历</button>
-        <button class="nav-button" onclick="scrollToSection('intern')"><i class="fas fa-user-clock"></i> 实习经历</button>
-        <button class="nav-button" onclick="scrollToSection('skills')"><i class="fas fa-tools"></i> 专业技能</button>
-        <button class="nav-button" onclick="scrollToSection('honors')"><i class="fas fa-trophy"></i> 荣誉奖项</button>
-        <button class="nav-button" onclick="scrollToSection('research')"><i class="fas fa-flask"></i> 研究经历</button>
-        <button class="nav-button" onclick="scrollToSection('activities')"><i class="fas fa-running"></i> 课外经历</button>
-      </nav>
+<!-- DEV PROJECTS -->
+<section class="section dev" id="dev">
+  <div class="dev-inner">
+    <div class="section-label reveal">项目</div>
+    <h2 class="section-title reveal">AI 产品、知识系统与科学数据项目</h2>
+    <div class="section-divider reveal"></div>
 
-      <section id="education" class="section">
-        <h2 class="section-title">教育经历</h2>
-        <div class="experience">
-          <div class="experience-header">
-            <h3>香港科技大学（QS前100）</h3>
-            <span class="duration">2024年09月 - 2025年07月</span>
-          </div>
-          <div class="position">环境科学与管理 硕士 跨学科学院</div>
-          <ul class="experience-details">
-            <li>主要课程：环境影响评估，ESG管理与信息披露，大气科学与管理，环境政策与管理，环境科学与技术基础</li>
-            <li>GPA: 3.5/4.0</li>
+    <!-- Kaleido -->
+    <div class="project">
+      <div class="project-header reveal">
+        <span class="project-name">Kaleido</span>
+        <a href="https://kaleido.asia/" target="_blank" rel="noopener" class="project-url">kaleido.asia</a>
+      </div>
+      <div class="project-tagline reveal">多智能体生态/社会-环境推演系统 · 独立开源项目 | 产品定义 / AI 原型开发 | 2026.03 - 至今</div>
+      <div class="project-body">
+        <div class="project-desc">
+          <p class="project-desc-text reveal">
+            Kaleido 是我独立定义和开发的多智能体生态/社会-环境推演系统，目标是把真实资料、真实地点、关系图谱、风险对象和变量注入组织成可运行的社会-生态复杂关系演化探索器。
+          </p>
+          <ul class="project-highlights reveal">
+            <li><strong>产品定义</strong>：“社会-生态复杂关系演化探索器”。把“关系 / edge”设为一等原语，状态作为关系演化的副产品，支持用户从真实资料或真实地点进入可干预、可回放、可追问的生态-社会推演场。</li>
+            <li><strong>Multi-Agent 节点体系设计</strong>：将真实报告、政策、访谈和研究笔记中的生态受体、人类主体、组织/企业、政府/监管、基础设施、环境载体等节点抽取为不同类型的 Agent。</li>
+            <li><strong>推演闭环搭建</strong>：资料导入与图谱构建、场景配置、Agent 与区域状态初始化、多轮模拟、变量注入、风险运行时刷新、反馈环检测、报告生成和节点/关系追问。</li>
+            <li><strong>场景配置层设计</strong>：把区域/子区域、Agent 关系、hazard 模板、传播通道、时间计划、注入变量、风险对象、机制图汇入同一运行配置。</li>
+            <li><strong>风险模型设计</strong>：建立 14 个具体生态灾害扩散模板与 5 类风险模型，包括水位与生态服务耦合、建成区内涝与排水压力、居民与游客暴露、交通与关键设施可达性、预警响应与公共服务承压。</li>
+            <li><strong>关系演化与机制推演</strong>：动态关系边不只是图谱装饰，而会把源区域压力耦合到目标区域状态。支持跨区新关系发现、dormant 历史、关系重激活、强关系晋升为结构边、反馈环检测，以及治理通道导致的 balancing loop。</li>
           </ul>
-        </div>
-        <div class="experience">
-          <div class="experience-header">
-            <h3>西安交通大学（985/211/双一流）</h3>
-            <span class="duration">2018年09月 - 2022年06月</span>
-          </div>
-          <div class="position">工业设计 本科 机械与工程学院</div>
-          <ul class="experience-details">
-            <li>主要课程：设计调查，工业设计心理学，人机界面设计，互联网产品创业项目，Web编程技术</li>
-            <li>GPA: 3.4/4.3</li>
-          </ul>
-        </div>
-      </section>
-
-      <section id="work" class="section">
-        <h2 class="section-title">工作经历</h2>
-        <div class="experience">
-          <div class="experience-header">
-            <h3>深圳共济科技有限公司</h3>
-            <span class="duration">2025年07月 - 2025年11月</span>
-          </div>
-          <div class="position">产品经理</div>
-          <div class="tags-container">
-            <span class="tag">标准化</span>
-            <span class="tag">项目管理</span>
-            <span class="tag">版本管理</span>
-          </div>
-          <ul class="experience-details">
-            <li>战略级创新产品设计与项目需求设计：为解决现有产品易用性与稳定性不足的问题，重新定义产品功能与架构，提供标准化产品解决方案。深入调研生产、安装、运维、售后、研发五个业务环节，系统梳理产品现状问题，制定端到端标准化解决方案，目标提升生产效率50%+、压缩调试时间60%、降低维护成本40%。建立工程模版-调试自检-动环面客三平台软件架构，撰写《云基标准化GU系统需求规格说明书》，覆盖产品背景分析、五类用户深度分析、完整业务流程、功能架构设计。</li>
-            <li>除核心负责的云基产品线外，还负责公司单点登录系统、门禁系统、用户权限管理、模拟置数模块、监控管理等多个产品线的功能需求设计。完成中兴UAC单点登录、吉宝组织架构图管理、河北国网工作票、上证仿真平台等20+项细分需求的规格设计和技术方案评审。</li>
-            <li>云基产品线产品负责人 | 全流程项目管理：负责云基产品线的整体项目周期管理，把控多条并行项目的进度和节奏，包括掉电保护方案开发、采集器操作系统XOS新版本开发、人脸识别一体屏门禁软件开发、云基标准化软件版本开发、ECO节能模块开发、国际化版本开发等。制定每个项目的关键里程碑，协调研发、测试、工程等部门按时交付，及时识别进度风险并推动问题解决。</li>
-            <li>产品故障管理与版本发布 | 产品版本管理：处理13个不同项目、全国上百个站点的50余条各类故障问题，建立故障分类、优先级排序和根因分析的体系化流程，确保高优问题快速定位和解决。及时拉通开发资源，针对重点客户项目制定专项补丁包方案。管理GU软件的V300R004 C00、C30、C50、C60、C66等多个主线版本，与彩虹C3224、彩虹C02PRO等多个硬件平台的适配工作。统计和分析现场故障问题，规划主线版本迭代方向，将高优故障问题及时合入主线hotfix补丁包，提升产品的稳定性和可维护性，建立持续的问题反馈闭环。</li>
-          </ul>
-        </div>
-        <div class="experience">
-          <div class="experience-header">
-            <h3>深圳果力智能科技有限公司</h3>
-            <span class="duration">2023年02月 - 2024年02月</span>
-          </div>
-          <div class="position">产品经理</div>
-          <div class="tags-container">
-            <span class="tag">人工智能</span>
-            <span class="tag">教育产品</span>
-            <span class="tag">交互设计</span>
-          </div>
-          <ul class="experience-details">
-            <li>AI认知语言大模型智能数字人教学终端系统：主导完成中小学AI教育大屏交互产品全流程设计，定义核心功能模块与交互逻辑。基于竞品分析与人机工学研究，设计AI数字人教学原型系统，输出PRD文档并协同前端团队完成开发。集成讯飞星火API实现大屏语音交互功能，支持自然语言问答与教学场景适配。</li>
-            <li>公司核心产品“果小聪”机器人：对原有APP诊断分析，重构平板端操作系统交互架构，优化7项核心功能操作路径。基于平板APP操控机器人的交互模式，为自然语言处理教学新功能进行了原型设计，向研发人员输出功能清单与界面原型设计。</li>
-            <li>航天太空探索沙盘产品：进行航天沙盘产品各个模块的功能定义，包括机器人与各个模块的交互方式、机器人在沙盘上的走线设计与学生如何操纵机器人完成任务。设计模块化航天任务场景，完成4个功能模块的3D建模与机器人交互协议开发。</li>
-            <li>工作成果：推动AI教育产品商业化落地，显著提升公司营收。参与并主导AI认知语言大模型教学终端系统与“果小聪”机器人等核心产品的设计与优化，有效提升产品智能化水平和用户体验。相关产品进入全国20多个省份的数百所学校，并成功拓展至全球30多个国家和地区，助力公司成为国内外领先的人工智能教育解决方案提供商。</li>
-          </ul>
-        </div>
-        <div class="experience">
-          <div class="experience-header">
-            <h3>上海品蓝技术有限公司</h3>
-            <span class="duration">2022年07月 - 2023年01月</span>
-          </div>
-          <div class="position">ToB产品经理</div>
-          <div class="tags-container">
-            <span class="tag">中小企业服务平台</span>
-            <span class="tag">功能架构</span>
-          </div>
-          <ul class="experience-details">
-            <li>需求分析：完成30余家同业平台功能调研，梳理出三大业务层级（基础服务/增值服务/生态服务），通过企业访谈，确定优先级排序逻辑，绘制业务关联矩阵图。</li>
-            <li>解决方案：使用Axure搭建包含12个核心模块的网站原型，包括主功能页（供应商认证/订单管理/物流跟踪）与辅助模块（行业资讯/政策解读/在线客服）。设计三层级导航系统（全局导航/业务导航/快捷入口），制作交互说明文档（含23个主要操作流程示意图），输出高保真原型图（17个页面+12组交互动效）。</li>
-          </ul>
-        </div>
-      </section>
-
-      <section id="projects" class="section">
-        <h2 class="section-title">项目经历</h2>
-        <div class="experience">
-          <div class="experience-header">
-            <h3>一叶知科-香港科技大学植物数据库网站</h3>
-            <span class="duration">2025年01月 - 至今</span>
-          </div>
-          <div class="position">创始人</div>
-          <div class="tags-container">
-            <span class="tag">数据库设计</span>
-            <span class="tag">前端开发</span>
-            <span class="tag">项目管理</span>
-          </div>
-          <ul class="experience-details">
-            <li>需求洞察与项目管理：发起校园植物资源数字化提案，获可持续发展办公室等3个部门联合支持。带领10人跨学科团队完成187种校园植物数据采集（含GPS定位+生物特征记录）。</li>
-            <li>技术实现与成果：使用Cursor构建HTML前端框架，集成Leaflet地理信息系统。【网站链接：<a href="https://ust-leaf-github-io.vercel.app/" target="_blank">ust-leaf-github-io.vercel.app</a>】</li>
-            <li>设计「三维信息架构」：▸ 空间层：校园地图坐标索引 ▸ 知识层：与香港物种数据库对接植物物种百科 ▸ 互动层：用户植物摄影投稿系统。上线首月访问量突破300人次，促成校方建立植物养护数字档案。</li>
-          </ul>
-        </div>
-        <div class="experience">
-          <div class="experience-header">
-            <h3>艺太极-太极拳辅助教学系统</h3>
-            <span class="duration">2020年05月 - 2023年06月</span>
-          </div>
-          <div class="position">项目创始人</div>
-          <div class="tags-container">
-            <span class="tag">图像识别</span>
-            <span class="tag">AI应用</span>
-            <span class="tag">创新创业</span>
-          </div>
-          <ul class="experience-details">
-            <li>大学生创新创业训练计划项目：国家级优秀结项（最高等级）。项目从大学生学习太极拳的场景出发，前期通过竞品分析、问卷调查、深度访谈、用户画像及故事板寻找用户在学习太极拳过程中遇到的困难，探究用户对太极小屋目标功能的需求度。</li>
-            <li>定义产品为“针对青少年学习太极新体验的服务装置”，完成太极小屋产品建模与APP高保真原型设计，并制作产品宣传片与商业计划书。</li>
-            <li>2021年成功申报国家级大学生课外学术科技竞赛作品，采集24式太极拳近100份样本，请专业裁判打分并训练算法，完成基于图像识别与人体骨架提取的智能评分技术。</li>
-          </ul>
-        </div>
-        <div class="experience">
-          <div class="experience-header">
-            <h3>“记忆宫”小程序</h3>
-            <span class="duration">2020年05月 - 2020年08月</span>
-          </div>
-          <div class="position">交互设计师</div>
-          <div class="tags-container">
-            <span class="tag">微信小程序</span>
-            <span class="tag">UI设计</span>
-            <span class="tag">认知心理学</span>
-          </div>
-          <ul class="experience-details">
-            <li>需求洞察与方案设计：访谈127名大学生发现87%认为传统记忆法操作门槛过高。基于认知心理学将记忆宫殿法拆解为「空间编码-图像联想-路径固化」三阶模型，设计渐进式学习系统：1. 引导教学（7步动态交互教程）；2. 记忆库管理（支持思维导图/卡片/语音三种输入）；3. 宫殿可视化（搭建含12种场景模板的3D建模工具库）。</li>
-            <li>技术实现与成果：采用微信小程序云开发架构，实现多端数据同步，运用Three.js构建轻量化3D预览模块，开发「记忆链路回溯」功能（操作记录可视化）。上线三个月获1,000+用户，日均使用时长14分钟，用户调研显示记忆效率提升达41%（N=237）。</li>
-          </ul>
-        </div>
-        <div class="experience">
-          <div class="experience-header">
-            <h3>Paperime纸杯回收机</h3>
-            <span class="duration">2020年09月 - 2021年01月</span>
-          </div>
-          <div class="position">产品经理</div>
-          <div class="tags-container">
-            <span class="tag">生态设计</span>
-            <span class="tag">交互设计</span>
-          </div>
-          <ul class="experience-details">
-            <li>负责Paperime纸杯回收机从0到1产品设计，定位为“趣味化环保互动终端”。基于可回收纸材料产品，为快餐店门店设计纸杯回收机，主导纸杯收集→智能压缩→数据统计→用户激励闭环的核心功能架构。</li>
-            <li>基于符号学设计原理，将机械回收行为转化为情感化体验，设计“虚拟花园”交互系统：用户每投递1个纸杯随机生成专属花朵（12种花卉+4季变化），配合积分兑换机制解锁咖啡券等奖励，实现功能性与趣味性平衡。</li>
-            <li>项目成果：产品投放至3家连锁快餐门店试运营，单机日均回收纸杯152个（较传统回收点提升73%），用户主动参与率达78%，获得门店方续约意向。</li>
-          </ul>
-        </div>
-        <div class="experience">
-          <div class="experience-header">
-            <h3>千面竹留守儿童交互玩具设计</h3>
-            <span class="duration">2020年04月 - 2021年01月</span>
-          </div>
-          <div class="position">产品设计师</div>
-          <div class="tags-container">
-            <span class="tag">情感设计</span>
-            <span class="tag">交互设计</span>
-          </div>
-          <ul class="experience-details">
-            <li>在湖南郴州白泉小学支教期间，通过田野调查与全国数据，定位留守儿童核心痛点为“情感表达方式单一化”，建立亲子双方用户画像及沟通场景模型。</li>
-            <li>设计双端互动系统：儿童端开发可识别6种基础表情的智能竹编玩具，通过触觉反馈引导情绪表达；家长端构建具备AI表情分析功能的APP，日均触发亲子互动提醒23次，试点期间沟通频率提升58%。</li>
-          </ul>
-        </div>
-        <div class="experience">
-          <div class="experience-header">
-            <h3>“小丝”智能车载交互方案</h3>
-            <span class="duration">2021年03月 - 2021年07月</span>
-          </div>
-          <div class="position">用户研究员</div>
-          <div class="tags-container">
-            <span class="tag">人机交互</span>
-            <span class="tag">车载系统</span>
-          </div>
-          <ul class="experience-details">
-            <li>运用Kano模型总结三类路怒症用户需求，访谈30+驾驶者形成用户画像与体验地图；发放200+份问卷并用SPSS完成效度/信度/描述性/假设检验，提炼设计方向。</li>
-            <li>基于调研结论输出针对路怒场景的车辆设计指南，梳理用户场景流程，搭建车载HMI界面信息架构并完成高保真原型。</li>
-          </ul>
-        </div>
-      </section>
-
-      <section id="intern" class="section">
-        <h2 class="section-title">实习经历</h2>
-        <div class="experience">
-          <div class="experience-header">
-            <h3>理想汽车有限公司</h3>
-            <span class="duration">2021年06月 - 2021年09月</span>
-          </div>
-          <div class="position">无人驾驶交互设计实习生</div>
-          <div class="tags-container">
-            <span class="tag">自动驾驶</span>
-            <span class="tag">HMI</span>
-          </div>
-          <ul class="experience-details">
-            <li>研究设计与执行：针对L3级自动驾驶模式切换场景，定义7类高频触发情境（包含高速巡航/紧急避让等）。使用Au & Lofelt设计16组声振组合方案（4种频率×4种振幅），组织42名用户完成双盲测试。</li>
-            <li>核心发现与输出：验证触觉反馈响应速度较声音提示快0.8秒，确立200Hz振动+800ms持续时长为最优触感方案。提出分级预警机制：▸ 一级提醒（接管准备）：方向盘微振动（0.5N·m）▸ 二级警报（紧急接管）：复合反馈（振动+三音阶提示音），输出6项HMI设计规范建议。</li>
-          </ul>
-        </div>
-        <div class="experience">
-          <div class="experience-header">
-            <h3>北京洛可可科技有限公司</h3>
-            <span class="duration">2020年07月 - 2020年09月</span>
-          </div>
-          <div class="position">产品设计实习生</div>
-          <div class="tags-container">
-            <span class="tag">产品设计</span>
-            <span class="tag">品牌形象</span>
-          </div>
-          <ul class="experience-details">
-            <li>进行腾讯公益设计项目设计辅助工作，完成洛克平台腾讯公益项目运营发布。</li>
-            <li>参与公司设计组北京市海外文化交流中心品牌形象设计项目的商务洽谈合作提案工作。通过深入理解客户的理念文化，为其重新设计logo，先后提出10余版方案，并最后交付样机方案。</li>
-            <li>参与公司雷士台灯儿童护眼台灯与屏幕挂灯设计调研工作，并对台灯外观设计进行了草图提案。</li>
-          </ul>
-        </div>
-        <div class="experience">
-          <div class="experience-header">
-            <h3>西安市量子智能科技有限公司</h3>
-            <span class="duration">2021年11月 - 2022年05月</span>
-          </div>
-          <div class="position">产品经理</div>
-          <div class="tags-container">
-            <span class="tag">垃圾分类</span>
-            <span class="tag">机器人</span>
-          </div>
-          <ul class="experience-details">
-            <li>完成《西安市生活垃圾分类管理条例》政策解读，建立企业园区场景下的合规性评估模型（覆盖6类垃圾处理标准）。通过深度访谈、用户画像、问卷调查等需求分析方法得出湿垃圾收集这一垃圾分类过程中的核心痛点。</li>
-            <li>聚焦湿垃圾收集场景，提出湿垃圾收集机器人与后台控制系统的功能概念设计方案，定义路径规划、识别湿垃圾、主动放入内部空间、自主充电等功能，以及后台显示电量、位置、工作情况等参数并统计垃圾收集数据。</li>
-            <li>运用SolidWorks完成垃圾收集机器人全参数化建模，包含15个运动部件优化设计；基于Adobe XD构建智慧管理平台设计系统，实现设备状态监控（10+参数可视化）、路径规划优化及垃圾处理量预测。</li>
-          </ul>
-        </div>
-      </section>
-
-      <section id="skills" class="section">
-        <h2 class="section-title">专业技能</h2>
-        
-        <div class="honors-grid">
-          <div class="honor-card">
-            <div class="honor-content">
-              <h3>影视动画</h3>
-              <p>PR、AE、C4D、Blender</p>
-            </div>
-          </div>
-          
-          <div class="honor-card">
-            <div class="honor-content">
-              <h3>图像处理</h3>
-              <p>AutoCAD、PS、AI</p>
-            </div>
-          </div>
-          
-          <div class="honor-card">
-            <div class="honor-content">
-              <h3>3D设计</h3>
-              <p>Solidworks、Keyshot</p>
-            </div>
-          </div>
-          
-          <div class="honor-card">
-            <div class="honor-content">
-              <h3>交互设计</h3>
-              <p>Axure、Figma</p>
-            </div>
-          </div>
-          
-          <div class="honor-card">
-            <div class="honor-content">
-              <h3>编程语言</h3>
-              <p>HTML、C++、Java、Python</p>
-            </div>
-          </div>
-
-          <div class="honor-card">
-            <div class="honor-content">
-              <h3>数据处理</h3>
-              <p>SPSS、Tableau</p>
-            </div>
-          </div>
-
-          <div class="honor-card">
-            <div class="honor-content">
-              <h3>生命周期分析</h3>
-              <p>OpenLCA</p>
-            </div>
-          </div>
-
-          <div class="honor-card">
-            <div class="honor-content">
-              <h3>语言</h3>
-              <p>TOEFL 90分</p>
-            </div>
+          <div class="project-tech reveal">
+            <span>Vue 3</span><span>Flask</span><span>Python</span><span>LLM</span><span>Zep Graph</span><span>Leaflet</span><span>Three.js</span>
           </div>
         </div>
-      </section>
-
-      <section id="honors" class="section">
-        <h2 class="section-title">荣誉奖项</h2>
-        
-        <div class="honors-grid">
-          <div class="honor-card">
-            <div class="honor-content">
-              <h3>国家级大学生创新创业训练计划项目</h3>
-              <p>教育部优秀结项（最高等级）</p>
-              <span class="honor-date">2023年07月</span>
-            </div>
-          </div>
-
-          <div class="honor-card">
-            <div class="honor-content">
-              <h3>2021年全国大学生武术锦标赛</h3>
-              <p>男子吴氏太极拳 冠军</p>
-              <span class="honor-date">2021年07月</span>
-            </div>
-          </div>
-          
-          <div class="honor-card">
-            <div class="honor-content">
-              <h3>第三十二届"腾飞杯"创新创业大赛</h3>
-              <p>创新赛道一等奖、创业赛道铜奖</p>
-              <span class="honor-date">2021年03月</span>
-            </div>
-          </div>
+        <div class="project-gallery kaleido-gallery reveal">
+          <div class="gallery-img contain"><img src="assets/kaleido-scene-design-graph.png" alt="Kaleido 场景设计与关系图谱" class="lightbox-trigger"></div>
+          <div class="gallery-img contain"><img src="assets/kaleido-home-hero.png" alt="Kaleido 生态推演引擎首页" class="lightbox-trigger"></div>
+          <div class="gallery-img contain"><img src="assets/kaleido-background-report.png" alt="Kaleido 背景素材报告与区域分析" class="lightbox-trigger"></div>
+          <div class="gallery-img contain"><img src="assets/kaleido-map-scenario.png" alt="Kaleido 地图空间关系场景" class="lightbox-trigger"></div>
+          <div class="gallery-img contain"><img src="assets/kaleido-result-analysis.png" alt="Kaleido 推演结果分析" class="lightbox-trigger"></div>
         </div>
-
-        <button class="expand-button" onclick="toggleContent('more-honors')">
-          查看更多奖项
-          <span class="expand-icon">▼</span>
-        </button>
-
-        <div id="more-honors" class="detail-content hidden">
-          <div class="honors-grid">
-            <div class="honor-card">
-              <div class="honor-content">
-                <h3>第五届"锐·动交大"体育人物评选活动</h3>
-                <p>最佳运动员与最具影响力奖</p>
-                <span class="honor-date">2022年5月</span>
-              </div>
-            </div>
-            
-            <div class="honor-card">
-              <div class="honor-content">
-                <h3>2020-2021学年"民族体育进书院"活动</h3>
-                <p>优秀学生讲师</p>
-                <span class="honor-date">2021年6月</span>
-              </div>
-            </div>
-            
-            <div class="honor-card">
-              <div class="honor-content">
-                <h3>2021年红点设计概念大奖</h3>
-                <p>初审入围</p>
-                <span class="honor-date">2021年4月</span>
-              </div>
-            </div>
-            
-            <div class="honor-card">
-              <div class="honor-content">
-                <h3>2020腾讯公益广告大赛</h3>
-                <p>优秀设计奖</p>
-                <span class="honor-date">2020年11月</span>
-              </div>
-            </div>
-            
-            <div class="honor-card">
-              <div class="honor-content">
-                <h3>2019年陕西省大学生武术锦标赛</h3>
-                <p>男子太极拳太极剑全能冠军</p>
-                <span class="honor-date">2019年11月</span>
-              </div>
-            </div>
-            <div class="honor-card">
-              <div class="honor-content">
-                <h3>2019年全国大学生武术锦标赛</h3>
-                <p>男子武氏太极拳 冠军</p>
-                <span class="honor-date">2019年07月</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="research" class="section">
-        <h2 class="section-title">研究经历</h2>
-        <div class="experience">
-          <div class="experience-header">
-            <h3>深圳居民家庭食物垃圾浪费行为研究</h3>
-            <span class="duration">2024年09月 - 2025年05月</span>
-          </div>
-          <div class="position">研究生毕业论文</div>
-          <ul class="experience-details">
-            <li>基于计划行为理论及其文化扩展构建并比较6个结构方程模型，量化态度、主观规范与感知行为控制对浪费行为的作用路径。</li>
-            <li>通过问卷与SEM分析筛选最优模型，提出感知行为控制与文化身份导向的干预建议，为城市家庭食物浪费治理与政策制定提供数据支持。</li>
-          </ul>
-        </div>
-        <div class="experience">
-          <div class="experience-header">
-            <h3>复杂性视域下的生态设计</h3>
-            <span class="duration">2020年09月 - 2021年03月</span>
-          </div>
-          <div class="position">研究项目</div>
-          <ul class="experience-details">
-            <li>引入整体性、非线性、开放性等复杂性特征与生态哲学观点，重新梳理生态设计的关系范式。</li>
-            <li>从生态、经济、社会三目标构建系统框架，提出面向实践的生态设计策略建议，补充传统“人-物”视角。</li>
-          </ul>
-        </div>
-      </section>
-
-      <section id="activities" class="section">
-        <h2 class="section-title">课外经历</h2>
-        
-        <div class="experience">
-          <div class="experience-header">
-            <h3>校武术队队长</h3>
-            <span class="duration">2019年08月 - 2022年06月</span>
-          </div>
-          <div class="position">校武术队</div>
-          <ul class="experience-details">
-            <li>在校期间担任校武术队队长，代表学校参加省级、国家级武术比赛，多次蝉联太极拳冠军，累计获得16项个人荣誉，助力团队多次获冠。</li>
-            <li>在疫情期间带领武术队队员，共同开办了线上太极拳教学，在全校范围推广太极拳。</li>
-          </ul>
-        </div>
-        
-        <div class="experience">
-          <div class="experience-header">
-            <h3>湖南省郴州市白泉村白泉小学支教</h3>
-            <span class="duration">2020年04月 - 2020年05月</span>
-          </div>
-          <div class="position">四年级英语老师</div>
-          <ul class="experience-details">
-            <li>参与乡村支教项目，为当地小学生提供英语教育支持。</li>
-            <li>设计了一系列互动教学活动，提高学生学习兴趣和参与度。</li>
-          </ul>
-        </div>
-      </section>
-      
-      <footer class="footer">
-        <div class="copyright">
-          <p>&copy; 2025 姜为 | 个人简历</p>
-        </div>
-      </footer>
+      </div>
     </div>
 
-    <script>
-      function scrollToSection(sectionId) {
-        const element = document.getElementById(sectionId);
-        if (element) {
-          // 高亮当前选中的导航按钮
-          const navButtons = document.querySelectorAll('.nav-button');
-          navButtons.forEach(btn => {
-            btn.classList.remove('active');
-            if (btn.getAttribute('onclick').includes(sectionId)) {
-              btn.classList.add('active');
-            }
-          });
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-      }
+    <!-- Synapse -->
+    <div class="project">
+      <div class="project-header reveal">
+        <span class="project-name">Synapse</span>
+        <a href="https://synapse.pw/" target="_blank" rel="noopener" class="project-url">synapse.pw</a>
+      </div>
+      <div class="project-tagline reveal">UP 主风格库提炼与科学内容生产系统 · 独立项目 | 产品设计 / AI 工作流 / 知识系统 | 2026.02 - 至今</div>
+      <div class="project-body">
+        <div class="project-desc">
+          <p class="project-desc-text reveal">
+            围绕 BlueDot 科学内容生产和外部 UP 主研究，搭建从环境新闻自动整理推送、UP 主蒸馏、AI 辅助写稿 Harness，到全频道长期记忆引擎的自媒体创作辅助系统。
+          </p>
+          <ul class="project-highlights reveal">
+            <li><strong>UP 主蒸馏模块</strong>：从一个 UP 主的上百条公开视频中抓取资料、转写文稿，并提炼其长期稳定的表达方式，而不是只做单篇视频总结。</li>
+            <li><strong>风格库提炼</strong>：将视频风格拆解为可复用的创作资产，包括开场方式、叙事结构、解释策略、转场习惯、标题手法、结尾方式和语言指纹，帮助 AI 学习“这个 UP 主到底怎么讲故事”。</li>
+            <li><strong>风格包出口</strong>：保留具体表达样本，形成可供 Claude / GPT 使用的风格包；当前已形成 135 张视频风格卡，10 个 UP，0 fallback，平均证据槽覆盖 98.3%。</li>
+            <li><strong>AI 写稿 Harness</strong>：将新闻/热点到视频成稿拆解为“选题报告 -> 脚本蓝图 -> 成稿 -> 审稿优化 -> 分镜素材单”的多阶段生产链路。</li>
+            <li><strong>频道记忆引擎</strong>：完成 Feishu 46 个文档入库与长期记忆沉淀，支持 approved-only semantic recall，使已确认的频道经验、选题偏好和写作规范进入 AI 创作上下文。</li>
+          </ul>
+          <div class="project-tech reveal">
+            <span>Next.js</span><span>PostgreSQL</span><span>Prisma</span><span>ASR</span><span>Style Pack</span><span>Semantic Memory</span>
+          </div>
+        </div>
+        <div class="project-gallery synapse-gallery reveal">
+          <div class="gallery-img contain"><img src="assets/synapse-workbench-harness.png" alt="Synapse AI 写稿 Harness 工作台" class="lightbox-trigger"></div>
+          <div class="gallery-img contain"><img src="assets/synapse-style-library.png" alt="Synapse 风格库与风格明细" class="lightbox-trigger"></div>
+          <div class="gallery-img contain"><img src="assets/synapse-up-knowledge-base.png" alt="Synapse UP 主知识库" class="lightbox-trigger"></div>
+          <div class="gallery-img contain"><img src="assets/synapse-cover-library.png" alt="Synapse 封面库" class="lightbox-trigger"></div>
+          <div class="gallery-img contain"><img src="assets/synapse-data-analysis.png" alt="Synapse 数据分析面板" class="lightbox-trigger"></div>
+          <div class="gallery-img contain"><img src="assets/synapse-knowledge-graph.png" alt="Synapse 创意库双链知识图" class="lightbox-trigger"></div>
+          <div class="gallery-img contain"><img src="assets/synapse-intelligence-desk.png" alt="Synapse 情报处与选题报告库" class="lightbox-trigger"></div>
+          <div class="gallery-img contain"><img src="assets/synapse-hero-orbit.png" alt="Synapse 主页与频道星系视觉" class="lightbox-trigger"></div>
+        </div>
+      </div>
+    </div>
 
-      function toggleContent(contentId) {
-        const content = document.getElementById(contentId);
-        const button = content.previousElementSibling;
-        
-        if (content.classList.contains('hidden')) {
-          content.classList.remove('hidden');
-          if (contentId === 'more-work') {
-            button.innerHTML = '收起更多工作经历<span class="expand-icon">▲</span>';
-          } else if (contentId === 'more-projects') {
-            button.innerHTML = '收起更多项目经历<span class="expand-icon">▲</span>';
-          } else if (contentId === 'more-honors') {
-            button.innerHTML = '收起更多奖项<span class="expand-icon">▲</span>';
-          }
-        } else {
-          content.classList.add('hidden');
-          if (contentId === 'more-work') {
-            button.innerHTML = '查看更多工作经历<span class="expand-icon">▼</span>';
-          } else if (contentId === 'more-projects') {
-            button.innerHTML = '查看更多项目经历<span class="expand-icon">▼</span>';
-          } else if (contentId === 'more-honors') {
-            button.innerHTML = '查看更多奖项<span class="expand-icon">▼</span>';
-          }
-        }
-      }
-      
-      // 滚动进度条控制
-      window.addEventListener('scroll', function() {
-        const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const scrolled = document.documentElement.scrollTop / windowHeight * 100;
-        document.querySelector('.scroll-progress').style.width = scrolled + '%';
-      });
+    <!-- HANHUAN RONGZHI -->
+    <div class="project">
+      <div class="project-header reveal">
+        <span class="project-name">汉环·融智 环境咨询行业项目管理系统</span>
+        <a href="https://hzrcdf.cn/" target="_blank" rel="noopener" class="project-url">hzrcdf.cn</a>
+      </div>
+      <div class="project-tagline reveal">覆盖项目、合同、OA、财务、资料库与移动端的环境咨询行业协作平台</div>
+      <div class="project-body">
+        <div class="project-desc">
+          <p class="project-desc-text reveal">
+            在蓉创鼎锋工作期间，参与并推进公司内部项目管理系统建设。系统服务真实业务流程，覆盖商务项目、技术项目、合同与合同财务、OA 审批、报销中心、组织权限、资料库、项目沟通、移动端入口等，不是环保展示页或单一生态项目。
+          </p>
+          <ul class="project-highlights reveal">
+            <li><strong>项目管理</strong>：商务项目与技术项目拆分管理，支持任务、日报/周报、成员、文件、归档和项目转合同链路</li>
+            <li><strong>合同与财务</strong>：合同台账、项目关联、合同成员、合同附件、付款、开票、成本、报销归集和财务中心</li>
+            <li><strong>OA 流程</strong>：出差、报销、请假、评审费、借款、项目归档等审批流，含评论、附件、打印导出与财务联动</li>
+            <li><strong>组织与移动端</strong>：多组织/租户边界、角色权限、资料库权限、移动端项目中心和工作提醒</li>
+          </ul>
+          <div class="project-tech reveal">
+            <span>Next.js</span><span>React</span><span>Prisma</span><span>PostgreSQL</span><span>OSS</span><span>Mobile Web</span><span>Permission System</span>
+          </div>
+        </div>
+        <div class="project-gallery rcdf-gallery reveal">
+          <div class="gallery-img contain"><img src="assets/rcdf-ops-overview.png" alt="汉环·融智 经营统计与项目总览" class="lightbox-trigger"></div>
+          <div class="gallery-img contain"><img src="assets/rcdf-technical-projects.png" alt="汉环·融智 技术项目列表" class="lightbox-trigger"></div>
+          <div class="gallery-img contain"><img src="assets/rcdf-internal-communication.png" alt="汉环·融智 内部沟通模块" class="lightbox-trigger"></div>
+          <div class="gallery-img contain"><img src="assets/rcdf-oa-approval.png" alt="汉环·融智 OA 审批中心" class="lightbox-trigger"></div>
+          <div class="gallery-img contain"><img src="assets/rcdf-finance-dashboard.png" alt="汉环·融智 财务中心部门看板" class="lightbox-trigger"></div>
+          <div class="gallery-img contain"><img src="assets/rcdf-performance-monitoring.png" alt="汉环·融智 性能观测与接口监控" class="lightbox-trigger"></div>
+        </div>
+      </div>
+    </div>
 
-      // 添加按钮漂浮动画和初始激活状态
-      const navButtons = document.querySelectorAll('.nav-button');
-      navButtons.forEach((button, index) => {
-        button.style.animationDelay = `${index * 0.1}s`;
-      });
-      
-      // 添加滚动监听，自动高亮当前部分
-      window.addEventListener('scroll', function() {
-        const sections = document.querySelectorAll('section');
-        let currentSectionId = '';
-        
-        sections.forEach(section => {
-          const sectionTop = section.offsetTop;
-          const sectionHeight = section.clientHeight;
-          if (window.pageYOffset >= (sectionTop - 300)) {
-            currentSectionId = section.id;
-          }
-        });
-        
-        if (currentSectionId) {
-          navButtons.forEach(btn => {
-            btn.classList.remove('active');
-            if (btn.getAttribute('onclick').includes(currentSectionId)) {
-              btn.classList.add('active');
-            }
-          });
-        }
-      });
-      
-      // 页面加载时默认激活第一个按钮
-      window.onload = function() {
-        // 隐藏加载动画
-        setTimeout(function() {
-          const pageLoader = document.getElementById('pageLoader');
-          pageLoader.classList.add('hidden');
-        }, 1500);
-        
-        navButtons[0].classList.add('active');
-        
-        // 为技能条添加动画
-        const skillLevels = document.querySelectorAll('.skill-level');
-        skillLevels.forEach(skill => {
-          const width = skill.style.width;
-          skill.style.width = '0';
-          setTimeout(() => {
-            skill.style.width = width;
-          }, 300);
-        });
-      };
-      
-      // 回到顶部按钮
-      const backToTopButton = document.getElementById('backToTop');
-      
-      // 监听滚动事件，控制按钮显示和隐藏
-      window.addEventListener('scroll', function() {
-        if (window.pageYOffset > 300) {
-          backToTopButton.classList.add('visible');
-        } else {
-          backToTopButton.classList.remove('visible');
-        }
-      });
-      
-      // 点击按钮回到顶部
-      backToTopButton.addEventListener('click', function() {
-        window.scrollTo({
-          top: 0,
-          behavior: 'smooth'
-        });
-      });
-    </script>
-    
-    <button id="backToTop" class="back-to-top">
-      <i class="fas fa-arrow-up"></i>
-    </button>
-  </body>
-</html> 
+    <!-- BlueDot Lab -->
+    <div class="project">
+      <div class="project-header reveal">
+        <span class="project-name">BlueDot Lab 蓝点实验室</span>
+      </div>
+      <div class="project-tagline reveal">科学内容交互网站与数据可视化工具 · 独立开发 / 产品设计 / AI 辅助数据可视化 | 2026.02 - 至今</div>
+      <div class="project-body">
+        <div class="project-desc">
+          <p class="project-desc-text reveal">
+            面向公众展示自媒体创作过程中积累的研究数据，并进行数据可视化与趣味交互设计，包括太空轨道碰撞预测、厄尔尼诺预测历史图谱、灾害年轮、高考环境题等数据工作台。
+          </p>
+          <ul class="project-highlights reveal">
+            <li><strong>太空预测系统</strong>：构建三维地球、轨道壳层、碰撞模板、碎片压力、避碰效率、自然衰减、后续级联碰撞和凯斯勒阈值模型；支持选择起始年份、碰撞等级和目标轨道高度，实时输出可用卫星、碎片总量、预测碰撞率和曲线。</li>
+            <li><strong>厄尔尼诺预测历史图谱</strong>：整理 1950-2026 年 NOAA ONI 数据为 924 个三个月滑动季，制作交互面积图，对比学界主流预测、实际 ONI 与非科学对照序列。</li>
+            <li><strong>高考环境题数据台</strong>：迁移并整理 2016-2025 年高考环境题资料包，累计处理 739 份试卷、14903 道题，当前主口径以 6811 道题为分母，确认 544 道环境题。</li>
+            <li><strong>灾害年轮</strong>：接入地震、旱涝、台风、火山、海啸、野火、人道响应等多源数据，形成 930 条年度灾害指数、21 类来源、787 个年度事件分包、1075 条强热带气旋路径和 58743 条中国旱涝空间点。</li>
+          </ul>
+          <div class="project-tech reveal">
+            <span>Next.js</span><span>React</span><span>D3</span><span>Three.js</span><span>数据可视化</span><span>AI 辅助开发</span>
+          </div>
+        </div>
+        <div class="project-gallery bluedot-gallery reveal">
+          <div class="gallery-img contain"><img src="assets/bluedot-orbit-simulator.png" alt="BlueDot 太空轨道碰撞预测系统" class="lightbox-trigger"></div>
+          <div class="gallery-img contain"><img src="assets/bluedot-enso-atlas.png" alt="BlueDot 厄尔尼诺预测历史图谱" class="lightbox-trigger"></div>
+          <div class="gallery-img contain"><img src="assets/bluedot-disaster-rings.png" alt="BlueDot 灾害年轮自然灾害数据可视化" class="lightbox-trigger"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH -->
+<section class="section" id="research">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="section-label reveal">研究与知识底座</div>
+    <h2 class="section-title reveal">复杂系统、环境政策与行为研究</h2>
+    <div class="section-divider reveal"></div>
+  </div>
+  <div class="research-grid">
+    <div class="research-card reveal">
+      <div class="card-period">2024.09 — 2025.05</div>
+      <div class="card-title">深圳居民家庭食物垃圾浪费行为研究</div>
+      <div class="card-desc">硕士毕业论文。基于计划行为理论（TPB）与文化身份等变量构建结构方程模型，分析家庭食物浪费行为背后的认知、规范、控制感和情境因素。</div>
+      <div class="card-tag">硕士论文 · SEM</div>
+    </div>
+    <div class="research-card reveal">
+      <div class="card-period">2025 — 2026</div>
+      <div class="card-title">《自然诸领域》生态哲学论著</div>
+      <div class="card-desc">围绕自然之力、自然情感、人类中心主义、现代性和复杂关系展开长期写作，为后续生态模拟、科学传播和社会系统产品建立思想框架。</div>
+      <div class="card-tag">著作 · 复杂性</div>
+    </div>
+    <div class="research-card reveal">
+      <div class="card-period">2024.09 — 2024.12</div>
+      <div class="card-title">Hanes口罩生命周期评估 LCA 分析</div>
+      <div class="card-desc">使用OpenLCA 2.3与ecoinvent数据库，采用从摇篮到坟墓的LCA框架，评估一次性医用口罩与布口罩在18个环境影响类别下的表现。</div>
+      <div class="card-tag">LCA · OpenLCA</div>
+    </div>
+    <div class="research-card reveal">
+      <div class="card-period">2025.02 — 2025.05</div>
+      <div class="card-title">香港电动车电池回收政策研究</div>
+      <div class="card-desc">针对香港EV退役电池激增问题，设计生产者责任制（PRS）回收政策框架。预测2025-2035年回收产业ROI，2035年达213.1%。</div>
+      <div class="card-tag">政策研究 · PRS</div>
+    </div>
+    <div class="research-card reveal">
+      <div class="card-period">2025.02 — 2025.05</div>
+      <div class="card-title">深港地铁环境影响评价标准对比</div>
+      <div class="card-desc">运用AERMOD、PATH等大气扩散建模工具，结合GIS空间分析，量化施工与运营期污染物排放及敏感点影响。</div>
+      <div class="card-tag">EIA · AERMOD</div>
+    </div>
+    <div class="research-card reveal">
+      <div class="card-period">2020.09 — 2021.03</div>
+      <div class="card-title">复杂性视域下的生态设计</div>
+      <div class="card-desc">以复杂性理论与生态哲学为基础，提出生态设计中的新关系范式。综合生态、经济和社会三大目标，分析其构成的复杂系统。</div>
+      <div class="card-tag">生态哲学 · 复杂性理论</div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="section edu" id="edu">
+  <div class="edu-inner">
+    <div class="section-label reveal">教育背景</div>
+    <h2 class="section-title reveal">教育与能力背景</h2>
+    <div class="section-divider reveal"></div>
+    <div class="edu-timeline reveal">
+      <div class="edu-card">
+        <div class="edu-year">2018 — 2022</div>
+        <div class="edu-school">西安交通大学</div>
+        <div class="edu-badge"><span>985</span><span>211</span><span>双一流</span></div>
+        <div class="edu-major">工业设计 · 本科</div>
+        <div class="edu-detail">机械与工程学院<br>主要课程：生态哲学、设计美学、人机界面设计、设计研究、产品系统设计<br>GPA：3.4 / 4.3</div>
+      </div>
+      <div class="edu-arrow">→</div>
+      <div class="edu-card">
+        <div class="edu-year">2024 — 2025</div>
+        <div class="edu-school">香港科技大学</div>
+        <div class="edu-badge"><span>QS前100</span></div>
+        <div class="edu-major">环境科学与管理 · 硕士</div>
+        <div class="edu-detail">跨学科学院<br>主要课程：环境政策与管理 (A+)、可持续发展科技基础 (A+)、环境影响评价、空气污染与气候、ESG 与环境管理<br>GPA：3.5 / 4.0</div>
+      </div>
+    </div>
+
+    <div class="skills-section reveal">
+      <h4>专业技能</h4>
+      <div class="skills-grid">
+        <div class="skill-group">
+          <div class="skill-cat">产品与设计</div>
+          <div class="skill-items">产品定义、用户路径、信息架构、Figma、Axure、交互原型</div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-cat">AI 开发</div>
+          <div class="skill-items">Cursor、Claude、GPT、LLM 工作流、提示工程、AI 辅助全栈开发</div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-cat">前后端</div>
+          <div class="skill-items">React、Next.js、Vue、Flask、Python、Prisma、PostgreSQL</div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-cat">模拟与图谱</div>
+          <div class="skill-items">Multi-Agent、机制图谱、风险对象、知识图谱、变量注入</div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-cat">数据可视化</div>
+          <div class="skill-items">D3.js、Three.js、Leaflet、GIS、Tableau、数据管线</div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-cat">环境分析</div>
+          <div class="skill-items">OpenLCA、ArcGIS、AERMOD、PATH、EIA、LCA、政策研究</div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-cat">内容系统</div>
+          <div class="skill-items">脚本研究、风格库、叙事结构卡、知识库、公开资料包</div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-cat">语言</div>
+          <div class="skill-items">中文、英文、TOEFL 90</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer" id="contact">
+  <div class="footer-title reveal">联系方式</div>
+  <div class="footer-contacts reveal">
+    <div class="footer-contact">
+      <div class="fc-label">Email</div>
+      <div><a href="mailto:1251532417@qq.com">1251532417@qq.com</a></div>
+    </div>
+    <div class="footer-contact">
+      <div class="fc-label">电话</div>
+      <div>132-6837-8843</div>
+    </div>
+    <div class="footer-contact">
+      <div class="fc-label">方向</div>
+      <div>AI Agent 产品 / Multi-Agent 社会-生态预测产品</div>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 姜为 — AI产品经理作品集</div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-close" onclick="closeLightbox()">&times;</div>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<script>
+// === NAV SCROLL ===
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 80);
+});
+
+// Close mobile nav on link click
+document.querySelectorAll('.nav-links a').forEach(a => {
+  a.addEventListener('click', () => {
+    document.getElementById('navLinks').classList.remove('open');
+  });
+});
+
+// === HERO ANIMATION ===
+gsap.to('.hero-label', { opacity: 1, y: 0, duration: 1, delay: 0.3 });
+gsap.to('.hero-name', { opacity: 1, y: 0, duration: 1.2, delay: 0.5 });
+gsap.to('.hero-tagline', { opacity: 1, y: 0, duration: 1, delay: 0.8 });
+gsap.to('.hero-scroll', { opacity: 1, duration: 1, delay: 1.2 });
+
+// === SCROLL REVEAL ===
+const revealElements = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+revealElements.forEach(el => observer.observe(el));
+
+// === LIGHTBOX ===
+function openLightbox(src) {
+  const lb = document.getElementById('lightbox');
+  document.getElementById('lightboxImg').src = src;
+  lb.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('active');
+  document.body.style.overflow = '';
+}
+document.getElementById('lightbox').addEventListener('click', (e) => {
+  if (e.target === e.currentTarget) closeLightbox();
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeLightbox();
+});
+document.querySelectorAll('.lightbox-trigger').forEach(img => {
+  img.style.cursor = 'zoom-in';
+  img.addEventListener('click', () => openLightbox(img.src));
+});
+
+// === GSAP PARALLAX on hero ===
+gsap.to('.hero-bg', {
+  scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true },
+  y: 150, scale: 1.1
+});
+gsap.to('.hero-content', {
+  scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true },
+  y: -80, opacity: 0
+});
+</script>
+</body>
+</html>
