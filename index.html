@@ -340,11 +340,11 @@ a{color:inherit;text-decoration:none}
           </p>
           <ul class="project-highlights reveal">
             <li><strong>产品定义</strong>：“社会-生态复杂关系演化探索器”。把“关系 / edge”设为一等原语，状态作为关系演化的副产品，支持用户从真实资料或真实地点进入可干预、可回放、可追问的生态-社会推演场。</li>
-            <li><strong>Multi-Agent 节点体系设计</strong>：将真实报告、政策、访谈和研究笔记中的生态受体、人类主体、组织/企业、政府/监管、基础设施、环境载体等节点抽取为不同类型的 Agent。</li>
+            <li><strong>multi-agent节点体系设计</strong>：将真实报告、政策、访谈和研究笔记中的生态受体、人类主体、组织/企业、政府/监管、基础设施、环境载体等节点抽取为不同类型的 Agent。</li>
             <li><strong>推演闭环搭建</strong>：资料导入与图谱构建、场景配置、Agent 与区域状态初始化、多轮模拟、变量注入、风险运行时刷新、反馈环检测、报告生成和节点/关系追问。</li>
-            <li><strong>场景配置层设计</strong>：把区域/子区域、Agent 关系、hazard 模板、传播通道、时间计划、注入变量、风险对象、机制图汇入同一运行配置。</li>
+            <li><strong>设计场景配置层</strong>：按照具体地点的开源影像数据识别建筑居民区/生态区等区域类型，划分区域/子区域。按照地点关系生成对应Agent 与场景配置。灾难模板、传播通道、时间计划、注入变量、风险对象、机制图汇入同一运行配置。</li>
             <li><strong>风险模型设计</strong>：建立 14 个具体生态灾害扩散模板与 5 类风险模型，包括水位与生态服务耦合、建成区内涝与排水压力、居民与游客暴露、交通与关键设施可达性、预警响应与公共服务承压。</li>
-            <li><strong>关系演化与机制推演</strong>：动态关系边不只是图谱装饰，而会把源区域压力耦合到目标区域状态。支持跨区新关系发现、dormant 历史、关系重激活、强关系晋升为结构边、反馈环检测，以及治理通道导致的 balancing loop。</li>
+            <li><strong>深化关系演化与机制推演</strong>：动态关系边会把源区域压力耦合到目标区域状态。支持跨区新关系发现、关系重激活、反馈环检测。</li>
           </ul>
           <div class="project-tech reveal">
             <span>Vue 3</span><span>Flask</span><span>Python</span><span>LLM</span><span>Zep Graph</span><span>Leaflet</span><span>Three.js</span>
@@ -366,18 +366,16 @@ a{color:inherit;text-decoration:none}
         <span class="project-name">Synapse</span>
         <a href="https://synapse.pw/" target="_blank" rel="noopener" class="project-url">synapse.pw</a>
       </div>
-      <div class="project-tagline reveal">UP 主风格库提炼与科学内容生产系统 · 独立项目 | 产品设计 / AI 工作流 / 知识系统 | 2026.02 - 至今</div>
+      <div class="project-tagline reveal">自媒体内容生产平台 · 独立项目 | 产品设计 / AI 工作流 / 知识系统 | 2026.02 - 至今</div>
       <div class="project-body">
         <div class="project-desc">
           <p class="project-desc-text reveal">
-            围绕 BlueDot 科学内容生产和外部 UP 主研究，搭建从环境新闻自动整理推送、UP 主蒸馏、AI 辅助写稿 Harness，到全频道长期记忆引擎的自媒体创作辅助系统。
+            围绕 BlueDot 科学内容生产和外部 UP 主研究，搭建从环境新闻自动整理推送，up主蒸馏，AI辅助写稿harness工程，到全频道长期记忆引擎的自媒体创作辅助系统。
           </p>
           <ul class="project-highlights reveal">
-            <li><strong>UP 主蒸馏模块</strong>：从一个 UP 主的上百条公开视频中抓取资料、转写文稿，并提炼其长期稳定的表达方式，而不是只做单篇视频总结。</li>
-            <li><strong>风格库提炼</strong>：将视频风格拆解为可复用的创作资产，包括开场方式、叙事结构、解释策略、转场习惯、标题手法、结尾方式和语言指纹，帮助 AI 学习“这个 UP 主到底怎么讲故事”。</li>
-            <li><strong>风格包出口</strong>：保留具体表达样本，形成可供 Claude / GPT 使用的风格包；当前已形成 135 张视频风格卡，10 个 UP，0 fallback，平均证据槽覆盖 98.3%。</li>
-            <li><strong>AI 写稿 Harness</strong>：将新闻/热点到视频成稿拆解为“选题报告 -> 脚本蓝图 -> 成稿 -> 审稿优化 -> 分镜素材单”的多阶段生产链路。</li>
-            <li><strong>频道记忆引擎</strong>：完成 Feishu 46 个文档入库与长期记忆沉淀，支持 approved-only semantic recall，使已确认的频道经验、选题偏好和写作规范进入 AI 创作上下文。</li>
+            <li><strong>UP 主蒸馏模块</strong>：从一个 UP 主的上百条公开视频中抓取资料、转写文稿，并提炼其长期稳定的表达方式，而不是只做单篇视频总结。将视频风格拆解为可复用的创作资产，包括开场方式、叙事结构、解释策略、转场习惯、标题手法、结尾方式和语言指纹，帮助 AI 更准确地学习“这个 UP 主到底怎么讲故事”。系统会保留具体表达样本，形成可供 Claude / GPT 使用的风格包。</li>
+            <li><strong>AI 写稿 Harness</strong>：将新闻/热点到视频成稿的流程拆解为“选题报告 -> 脚本蓝图 -> 成稿 -> 审稿优化 -> 分镜素材单”的多阶段生产链路，让 AI 在明确任务轨道、资料约束和风格标准下辅助创作。</li>
+            <li><strong>频道记忆引擎</strong>：完成飞书文档自动入库与长期记忆沉淀，后台agent处理各来源文档与数据，并按规则合入长期记忆。使已确认的频道经验、选题偏好和写作规范进入 AI 创作上下文。</li>
           </ul>
           <div class="project-tech reveal">
             <span>Next.js</span><span>PostgreSQL</span><span>Prisma</span><span>ASR</span><span>Style Pack</span><span>Semantic Memory</span>
